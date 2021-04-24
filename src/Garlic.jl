@@ -8,4 +8,6 @@ include("phenology/phenology.jl")
 include("morphology/morphology.jl")
 include("physiology/physiology.jl")
 
+include("examples/examples.jl")
+
 end

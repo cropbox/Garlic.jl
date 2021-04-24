@@ -1,6 +1,7 @@
-using Cropbox
-using Garlic
+module RCP
 
+using Cropbox
+using ..Garlic
 using TimeZones
 using Dates
 using Interpolations: LinearInterpolation
@@ -90,7 +91,7 @@ ND_GL_2012 = let planting_date = Garlic.date(2012, 10, 4; tz)
             planting_date,
             scape_removal_date = nothing,
             harvest_date = ZonedDateTime(2013, 6, 15, tz),
-            storage_days = storagedays(planting_date),
+            storage_days = Garlic.storagedays(planting_date),
         )
     )
 end
@@ -301,4 +302,8 @@ end
 #garlic_run_cold(configurator=korea_config, settings=(; korea_settings..., station=[101]), name=:korea)
 #garlic_run_cold(configurator=rcp_config, settings=(; rcp_settings..., station=[101]), name=:rcp)
 
-Garlic
+export garlic_run_storage, garlic_run_cold
+export korea_config, korea_settings
+export rcp_config, rcp_settings
+
+end
