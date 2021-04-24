@@ -9,7 +9,7 @@ ND = (
         :init => ZonedDateTime(2007, 9, 1, tz"Asia/Seoul"),
         :last => ZonedDateTime(2008, 8, 31, tz"Asia/Seoul"),
     ),
-    :Weather => (:store => Garlic.loadwea("$(@__DIR__)/data/2007.wea", tz"Asia/Seoul")),
+    :Weather => (:store => Garlic.loadwea(Garlic.datapath("2007.wea"), tz"Asia/Seoul")),
     :Phenology => (:planting_date => ZonedDateTime(2007, 11, 1, tz"Asia/Seoul")),
 )
 
@@ -78,7 +78,7 @@ CUH = (
 )
 CUH_2013 = (CUH, (
     :Weather => (
-        store = Garlic.loadwea("$(@__DIR__)/data/CUH/2013.wea", tz),
+        store = Garlic.loadwea(Garlic.datapath("CUH/2013.wea"), tz),
     ),
     :Calendar => (
         init = ZonedDateTime(2013, 10, 30, tz), # Y1 bgn
@@ -87,7 +87,7 @@ CUH_2013 = (CUH, (
 ))
 CUH_2014 = (CUH, (
     :Weather => (
-        store = Garlic.loadwea("$(@__DIR__)/data/CUH/2014.wea", tz),
+        store = Garlic.loadwea(Garlic.datapath("CUH/2014.wea"), tz),
     ),
     :Calendar => (
         # 2014.wea starts from 2014-09-01 01:00, not 00:00
@@ -176,7 +176,7 @@ using DataFrames
 using DataFramesMeta
 import Dates
 loaddata(cv, y, p) = begin
-    ps = CSV.File("$(@__DIR__)/data/CUH/PhenologySummary.csv") |> DataFrame |> unitfy
+    ps = CSV.File(Garlic.datapath("CUH/PhenologySummary.csv")) |> DataFrame |> unitfy
     @linq ps |> where(:CV .== cv, :Year .== y, :Pgroup .== p) |> select(:DAP, :Leaves)
 end
 

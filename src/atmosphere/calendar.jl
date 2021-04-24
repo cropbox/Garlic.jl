@@ -56,3 +56,6 @@ loadwea(filename, timezone; indexkey=:index) = begin
     end, eachrow(df))
     df
 end
+
+datapath() = joinpath(dirname(pathof(Garlic)),  "../data/")
+datapath(filename) = joinpath(datapath(), filename)

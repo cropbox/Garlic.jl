@@ -273,7 +273,7 @@ end
 plot_sun(v, d=3u"d"; kw...) = begin
     o = (
         :Calendar => (:init => ZonedDateTime(2007, 9, 1, tz"Asia/Seoul")),
-        :Weather => (:store => loadwea("$(@__DIR__)/../data/2007.wea", tz"Asia/Seoul")),
+        :Weather => (:store => loadwea(datapath("2007.wea"), tz"Asia/Seoul")),
     )
     r = simulate(SunController, stop=d, config=o, base=:sun)
     visualize(r, :time, v; kw...)

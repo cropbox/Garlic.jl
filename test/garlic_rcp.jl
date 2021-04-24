@@ -76,7 +76,7 @@ GL = (
 )
 GL_2012 = (GL,
     :Weather => (
-        store = Garlic.loadwea("$(@__DIR__)/data/Korea/garliclab_2012.wea", tz),
+        store = Garlic.loadwea(Garlic.datapath("Korea/garliclab_2012.wea"), tz),
     ),
     :Calendar => (
         init = ZonedDateTime(2012, 10, 1, tz),
@@ -101,7 +101,7 @@ JS = (
 )
 JS_2009 = (JS,
     :Weather => (
-        store = Garlic.loadwea("$(@__DIR__)/data/Korea/jungsil_2009.wea", tz),
+        store = Garlic.loadwea(Garlic.datapath("Korea/jungsil_2009.wea"), tz),
     ),
     :Calendar => (
         init = ZonedDateTime(2009, 9, 1, tz),
@@ -150,7 +150,7 @@ korea_config(; config=(), tz=tz, kw...) = _korea_config(; config, meta=kw, tz, k
 _korea_config(; config=(), meta=(), tz=tz, station, year, sowing_day, scape_removal_day) = begin
     latlongs = LATLONGS[station]
     name = "$(station)_$(year)"
-    weaname = "$(@__DIR__)/data/Korea/$name.wea"
+    weaname = Garlic.datapath("Korea/$name.wea")
     garlic_config(; config, meta, tz, latlongs..., weaname, year, sowing_day, scape_removal_day)
 end
 
@@ -168,7 +168,7 @@ rcp_config(; config=(), tz=tz, kw...) = _rcp_config(; config, meta=kw, tz, kw...
 _rcp_config(; config=(), meta=(), tz=tz, scenario, station, year, repetition, sowing_day, scape_removal_day) = begin
     latlongs = LATLONGS[station]
     name = "$(scenario)_$(station)_$(year)_$(repetition)"
-    weaname = "$(@__DIR__)/data/RCP/$name.wea"
+    weaname = Garlic.datapath("RCP/$name.wea")
     CO2 = rcp_co2(scenario, year)
     garlic_config(; config, meta, tz, latlongs..., weaname, CO2, year, sowing_day, scape_removal_day)
 end
