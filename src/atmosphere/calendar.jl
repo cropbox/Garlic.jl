@@ -57,5 +57,5 @@ loadwea(filename, timezone; indexkey=:index) = begin
     df
 end
 
-datapath() = joinpath(dirname(pathof(Garlic)),  "../data/")
+datapath() = joinpath(@__DIR__,  "../../data/")
 datapath(filename) = joinpath(datapath(), filename)
