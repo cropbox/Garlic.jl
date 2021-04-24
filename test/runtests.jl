@@ -13,6 +13,8 @@ ND = (
     :Phenology => (:planting_date => ZonedDateTime(2007, 11, 1, tz"Asia/Seoul")),
 )
 
+tz = tz"America/Los_Angeles"
+
 KMSP = (
 # # CV PHYL ILN GLN LL LER SG SD LTAR LTARa LIR Topt Tceil critPPD
 # KM1 134 4 10 65.0 4.70 1.84 122 0 0.4421 0.1003 22.28 34.23 12
@@ -76,95 +78,95 @@ CUH = (
 )
 CUH_2013 = (CUH, (
     :Weather => (
-        store = Garlic.loadwea("$(@__DIR__)/data/CUH/2013.wea", tz"America/Los_Angeles"),
+        store = Garlic.loadwea("$(@__DIR__)/data/CUH/2013.wea", tz),
     ),
     :Calendar => (
-        init = ZonedDateTime(2013, 10, 30, tz"America/Los_Angeles"), # Y1 bgn
-        last = ZonedDateTime(2014, 7, 28, tz"America/Los_Angeles"), #Y2 end
+        init = ZonedDateTime(2013, 10, 30, tz), # Y1 bgn
+        last = ZonedDateTime(2014, 7, 28, tz), #Y2 end
     ),
 ))
 CUH_2014 = (CUH, (
     :Weather => (
-        store = Garlic.loadwea("$(@__DIR__)/data/CUH/2014.wea", tz"America/Los_Angeles"),
+        store = Garlic.loadwea("$(@__DIR__)/data/CUH/2014.wea", tz),
     ),
     :Calendar => (
         # 2014.wea starts from 2014-09-01 01:00, not 00:00
-        init = ZonedDateTime(2014, 9, 1, 1, tz"America/Los_Angeles"), # Y1 bgn
-        last = ZonedDateTime(2015, 7, 7, tz"America/Los_Angeles"), #Y2 end
+        init = ZonedDateTime(2014, 9, 1, 1, tz), # Y1 bgn
+        last = ZonedDateTime(2015, 7, 7, tz), #Y2 end
     ),
 ))
 
 CUH_2013_P1 = (CUH_2013, (
     :Phenology => (
         storage_days = 122, # SD
-        planting_date = ZonedDateTime(2013, 10, 30, tz"America/Los_Angeles"), # Y1 sow
+        planting_date = ZonedDateTime(2013, 10, 30, tz), # Y1 sow
     ),
 ))
 CUH_2013_P2 = (CUH_2013, (
     :Phenology => (
         storage_days = 170, # SD
-        planting_date = ZonedDateTime(2013, 12, 17, tz"America/Los_Angeles"), # Y1 sow
+        planting_date = ZonedDateTime(2013, 12, 17, tz), # Y1 sow
     ),
 ))
 CUH_2014_P1 = (CUH_2014, (
     :Phenology => (
         storage_days = 93, # SD
-        planting_date = ZonedDateTime(2014, 10, 1, tz"America/Los_Angeles"), # Y1 sow
+        planting_date = ZonedDateTime(2014, 10, 1, tz), # Y1 sow
     ),
 ))
 CUH_2014_P2 = (CUH_2014, (
     :Phenology => (
         storage_days = 143, # SD
-        planting_date = ZonedDateTime(2014, 11, 20, tz"America/Los_Angeles"), # Y1 sow
+        planting_date = ZonedDateTime(2014, 11, 20, tz), # Y1 sow
     ),
 ))
 
 KM_2013_P1_SR0 = (KM, CUH_2013_P1, (
     :Phenology => (
-        emergence_date = ZonedDateTime(2013, 12, 29, tz"America/Los_Angeles"), # Y1 emg
+        emergence_date = ZonedDateTime(2013, 12, 29, tz), # Y1 emg
         scape_removal_date = nothing, # Y2 SR
     ),
 ))
 KM_2013_P2_SR0 = (KM, CUH_2013_P2, (
     :Phenology => (
-        emergence_date = ZonedDateTime(2014, 1, 26, tz"America/Los_Angeles"), # Y1 emg
+        emergence_date = ZonedDateTime(2014, 1, 26, tz), # Y1 emg
         scape_removal_date = nothing, # Y2 SR
     ),
 ))
 KM_2014_P1_SR0 = (KM, CUH_2014_P1, (
     :Phenology => (
-        emergence_date = ZonedDateTime(2014, 10, 26, tz"America/Los_Angeles"), # Y1 emg
+        emergence_date = ZonedDateTime(2014, 10, 26, tz), # Y1 emg
         scape_removal_date = nothing, # Y2 SR
     ),
 ))
 KM_2014_P2_SR0 = (KM, CUH_2014_P2, (
     :Phenology => (
-        emergence_date = ZonedDateTime(2014, 12, 30, tz"America/Los_Angeles"), # Y1 emg
+        emergence_date = ZonedDateTime(2014, 12, 30, tz), # Y1 emg
         scape_removal_date = nothing, # Y2 SR
     ),
 ))
 
 SP_2013_P1_SR0 = (SP, CUH_2013_P1, (
     :Phenology => (
-        emergence_date = ZonedDateTime(2013, 11, 14, tz"America/Los_Angeles"), # Y1 emg
+        emergence_date = ZonedDateTime(2013, 11, 14, tz), # Y1 emg
         scape_removal_date = nothing, # Y2 SR
     ),
 ))
 SP_2013_P2_SR0 = (SP, CUH_2013_P2, (
     :Phenology => (
-        emergence_date = ZonedDateTime(2014, 1, 6, tz"America/Los_Angeles"), # Y1 emg
+        emergence_date = ZonedDateTime(2014, 1, 6, tz), # Y1 emg
         scape_removal_date = nothing, # Y2 SR
     ),
 ))
 SP_2014_P1_SR0 = (SP, CUH_2014_P1, (
     :Phenology => (
-        emergence_date = ZonedDateTime(2014, 10, 6, tz"America/Los_Angeles"), # Y1 emg
+        emergence_date = ZonedDateTime(2014, 10, 6, tz), # Y1 emg
         scape_removal_date = nothing, # Y2 SR
     ),
 ))
 SP_2014_P2_SR0 = (SP, CUH_2014_P2, (
     :Phenology => (
-        emergence_date = ZonedDateTime(2014, 11, 30, tz"America/Los_Angeles"), # Y1 emg
+        emergence_date = ZonedDateTime(2014, 11, 30, tz), # Y1 emg
         scape_removal_date = nothing, # Y2 SR
     ),
 ))
