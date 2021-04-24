@@ -8,14 +8,6 @@ using BSON
 
 tz = tz"Asia/Seoul"
 
-date(year, month::Int, day::Int; tz=tz) = ZonedDateTime(year, month, day, tz)
-date(year, doy::Int; tz=tz) = ZonedDateTime(year, 1, 1, tz) + Dates.Day(doy - 1)
-date(year, d::ZonedDateTime; tz=tz) = d
-date(year, d::DateTime; tz=tz) = ZonedDateTime(d, tz)
-date(year, ::Nothing; tz=tz) = nothing
-
-storagedays(t::ZonedDateTime) = (t - ZonedDateTime(year(t), 6, 30, timezone(t))) |> Day |> Dates.value
-
 KMSP = (
 # # CV PHYL ILN GLN LL LER SG SD LTAR LTARa LIR Topt Tceil critPPD
 # KM1 134 4 10 65.0 4.70 1.84 122 0 0.4421 0.1003 22.28 34.23 12
@@ -87,17 +79,17 @@ GL_2012 = (GL,
         store = Garlic.loadwea("$(@__DIR__)/data/Korea/garliclab_2012.wea", tz),
     ),
     :Calendar => (
-        init = date(2012, 10, 1),
-        last = date(2013, 6, 30),
+        init = ZonedDateTime(2012, 10, 1, tz),
+        last = ZonedDateTime(2013, 6, 30, tz),
     ),
 )
-ND_GL_2012 = let planting_date = date(2012, 10, 4)
+ND_GL_2012 = let planting_date = Garlic.date(2012, 10, 4; tz)
     (
         ND, GL_2012,
         :Phenology => (;
             planting_date,
             scape_removal_date = nothing,
-            harvest_date = date(2013, 6, 15),
+            harvest_date = ZonedDateTime(2013, 6, 15, tz),
             storage_days = storagedays(planting_date),
         )
     )
@@ -112,18 +104,18 @@ JS_2009 = (JS,
         store = Garlic.loadwea("$(@__DIR__)/data/Korea/jungsil_2009.wea", tz),
     ),
     :Calendar => (
-        init = date(2009, 9, 1),
-        last = date(2010, 6, 30),
+        init = ZonedDateTime(2009, 9, 1, tz),
+        last = ZonedDateTime(2010, 6, 30, tz),
     ),
 )
-ND_JS_2009 = let planting_date = date(2009, 9, 15)
+ND_JS_2009 = let planting_date = ZonedDateTime(2009, 9, 15, tz)
     (
         ND, JS_2009,
         :Phenology => (;
             planting_date,
             scape_removal_date = nothing,
-            harvest_date = date(2010, 6, 18),
-            storage_days = storagedays(planting_date),
+            harvest_date = ZonedDateTime(2010, 6, 18, tz),
+            storage_days = Garlic.storagedays(planting_date),
         )
     )
 end
@@ -182,13 +174,13 @@ _rcp_config(; config=(), meta=(), tz=tz, scenario, station, year, repetition, so
 end
 
 garlic_config(; config=(), meta=(), tz=tz, latitude, longitude, altitude=20, weaname, CO2=390, year, sowing_day, scape_removal_day) = begin
-    start_date = date(year, 9, 1)
-    end_date = date(year+1, 6, 30)
+    start_date = Garlic.date(year, 9, 1; tz)
+    end_date = Garlic.date(year+1, 6, 30; tz)
 
-    planting_date = date(year, sowing_day)
-    scape_removal_date = date(year, scape_removal_day)
-    harvest_date = date(year+1, 5, 15)
-    storage_days = storagedays(planting_date)
+    planting_date = Garlic.date(year, sowing_day; tz)
+    scape_removal_date = Garlic.date(year, scape_removal_day; tz)
+    harvest_date = Garlic.date(year+1, 5, 15; tz)
+    storage_days = Garlic.storagedays(planting_date)
 
     @config (ND,
         :Location => (;

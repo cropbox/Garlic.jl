@@ -32,6 +32,14 @@ end
 julian_hour_from_datetime_2DSOIL(clock::ZonedDateTime) =
     julian_day_from_datetime_2DSOIL(clock; hourly=true) - julian_day_from_datetime_2DSOIL(clock; hourly=false)
 
+date(year, month::Int, day::Int; tz) = ZonedDateTime(year, month, day, tz)
+date(year, doy::Int; tz) = ZonedDateTime(year, 1, 1, tz) + Dates.Day(doy - 1)
+date(year, d::ZonedDateTime; tz) = d
+date(year, d::DateTime; tz) = ZonedDateTime(d, tz)
+date(year, ::Nothing; tz) = nothing
+
+storagedays(t::ZonedDateTime) = (t - ZonedDateTime(year(t), 6, 30, timezone(t))) |> Day |> Dates.value
+
 using CSV
 using DataFrames: DataFrames, DataFrame
 
