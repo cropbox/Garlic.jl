@@ -1,3 +1,5 @@
+<a href="https://github.com/cropbox/Cropbox.jl" target="_blank"><img src="docs/src/assets/logo.svg" alt="Cropbox" width="150"></a>
+
 # Garlic.jl
 
 [![Stable Documentation](https://img.shields.io/badge/docs-stable-blue.svg)](https://cropbox.github.io/Garlic.jl/stable/)
