@@ -11,6 +11,10 @@ Pkg.add("Garlic")
 
 ## Getting Started
 
+```@setup garlic
+ENV["UNITFUL_FANCY_EXPONENTS"] = true
+```
+
 ```@example garlic
 using Cropbox
 using Garlic
