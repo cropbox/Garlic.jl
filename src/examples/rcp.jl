@@ -156,6 +156,9 @@ _korea_config(; config=(), meta=(), tz=tz, station, year, sowing_day, scape_remo
 end
 
 rcp_co2(scenario, year) = begin
+    if scenario == :RCP00
+        return 390
+    end
     x = [2005, 2050, 2100, 2150, 2250, 2300]
     y = if scenario == :RCP45
         [379, 487, 538, 543, 543, 543]
@@ -223,6 +226,14 @@ rcp_settings = (;
     sowing_day = 240:10:350,
     scape_removal_day = [1],
 )
+normal_settings = (;
+    scenario = [:RCP00],
+    station = keys(STATION_NAMES),
+    year = [1980],
+    repetition = 0:9,
+    sowing_day = 240:10:350,
+    scape_removal_day = [1],
+)
 rcp_run(; configurator=rcp_config, settings=rcp_settings, kw...) = garlic_run(; configurator, settings, kw...)
 
 korea_settings = (;
@@ -282,6 +293,7 @@ garlic_run_storage(; configurator, settings, name, kw...) = begin
 end
 
 #garlic_run_storage(configurator=korea_config, settings=(; korea_settings..., station=[185]), name=:korea)
+#garlic_run_storage(configurator=rcp_config, settings=(; normal_settings..., station=[185]), name=:normal)
 #garlic_run_storage(configurator=rcp_config, settings=(; rcp_settings..., station=[185]), name=:rcp)
 
 garlic_run_cold(; configurator, settings, name, kw...) = begin
@@ -300,10 +312,11 @@ garlic_run_cold(; configurator, settings, name, kw...) = begin
 end
 
 #garlic_run_cold(configurator=korea_config, settings=(; korea_settings..., station=[101]), name=:korea)
+#garlic_run_cold(configurator=rcp_config, settings=(; normal_settings..., station=[101]), name=:normal)
 #garlic_run_cold(configurator=rcp_config, settings=(; rcp_settings..., station=[101]), name=:rcp)
 
 export garlic_run_storage, garlic_run_cold
 export korea_config, korea_settings
-export rcp_config, rcp_settings
+export rcp_config, rcp_settings, normal_settings
 
 end
