@@ -36,8 +36,7 @@ import Dates
     λ(loc.long): longitude ~ track(u"°") # leave it as in degrees, used only once for solar noon calculation
     alt(loc.alt): altitude ~ track(u"m")
 
-    #TODO: fix inconsistent naming of PAR vs. PFD
-    PAR(weather.PFD): photosynthetic_active_radiation ~ track(u"μmol/m^2/s") # Quanta
+    solrad(weather.solrad): solar_radiation ~ track(u"W/m^2")
     τ: transmissivity => 0.5 ~ preserve(parameter) # atmospheric transmissivity, Goudriaan and van Laar (1994) p 30
 
     #####################
@@ -167,8 +166,7 @@ import Dates
     SC: solar_constant => 1370 ~ preserve(u"W/m^2", parameter)
 
     # Campbell and Norman's global solar radiation, this approach is used here
-    #TODO rename to insolation? (W/m2)
-    solar_radiation(ts, d, SC) => begin
+    insolation(ts, d, SC) => begin
         # solar constant, Iqbal (1983)
         #FIXME better to be 1361 or 1362 W/m-2?
         g = 2pi * (d - 10u"d") / 365u"d"
@@ -242,16 +240,14 @@ import Dates
         goudriaan(τ)
     end ~ track
 
-    # PARtot: total PAR (umol m-2 s-1) on horizontal surface (PFD)
-    PARtot(PAR): photosynthetic_active_radiation_total ~ track(u"μmol/m^2/s") # Quanta
-
     Q: photosynthetic_active_radiation_conversion_factor => begin
         # 4.55 is a conversion factor from W to photons for solar radiation, Goudriaan and van Laar (1994)
         # some use 4.6 i.e., Amthor 1994, McCree 1981, Challa 1995.
         4.6
     end ~ preserve(u"μmol/J", parameter)
 
-    PARtot2(solar_radiation, PARfr, Q): photosynthetic_active_radiation_total2 => begin
+    # PARtot: total PAR (umol m-2 s-1) on horizontal surface (PFD)
+    PARtot(solar_radiation, PARfr, Q): photosynthetic_active_radiation_total => begin
         # conversion factor from W/m2 to PFD (umol m-2 s-1) for PAR waveband (median 550 nm of 400-700 nm) of solar radiation,
         # see Campbell and Norman (1994) p 149
         solar_radiation * PARfr * Q

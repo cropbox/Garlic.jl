@@ -4,8 +4,7 @@
 
     s: store ~ provide(init=calendar.time, parameter)
 
-    PFD: photon_flux_density ~ drive(from=s, by=:SolRad, u"μmol/m^2/s") #Quanta
-    #PFD => 1500 ~ track # umol m-2 s-1
+    solrad: solar_radiation ~ drive(from=s, by=:SolRad, u"W/m^2")
 
     CO2 => 400 ~ preserve(u"μmol/mol", parameter)
 
@@ -34,7 +33,7 @@ end
 
     vp(x=weather.vp) => x ~ ::VaporPressure
 
-    PFD(weather.PFD): photon_flux_density ~ track(u"μmol/m^2/s" #= Quanta =#)
+    solrad(weather.solrad): solar_radiation ~ track(u"W/m^2")
     CO2(weather.CO2) ~ track(u"μmol/mol")
     RH(weather.RH): relative_humidity ~ track(u"percent")
     T_air(weather.T_air): air_temperature ~ track(u"°C")
