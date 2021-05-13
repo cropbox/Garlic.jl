@@ -15,7 +15,7 @@ end
 
 @system ScapeAppearance(Stage, ScapeGrowth) begin
     scape_appearable(scapeable) ~ flag
-    scape_appeared(scape, scape_removed) => (scape >= 3.0 && !scape_removed) ~ flag
+    scape_appeared(scape) => (scape >= 3.0) ~ flag
     scape_appearing(scape_appearable & !scape_appeared) ~ flag
 
     # def finish(self):
@@ -27,8 +27,8 @@ end
     scape_removal_date => nothing ~ preserve::datetime(optional, parameter)
 
     scape_removeable(scape_appeared) ~ flag
-    scape_removed(scape_removal_date, t=calendar.time) => begin
-        isnothing(scape_removal_date) ? false : t >= scape_removal_date
+    scape_removed(scape_removal_date, scape_removeable, t=calendar.time) => begin
+        isnothing(scape_removal_date) ? false : scape_removeable && (t >= scape_removal_date)
     end ~ flag
     scape_removing(scape_appeared & !scape_removed) ~ flag
 
