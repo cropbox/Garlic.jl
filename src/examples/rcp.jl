@@ -114,7 +114,7 @@ ND_JS_2009 = let planting_date = ZonedDateTime(2009, 9, 15, tz)
         ND, JS_2009,
         :Phenology => (;
             planting_date,
-            scape_removal_date = nothing,
+            scape_removal_date = ZonedDateTime(2010, 1, 1, tz), # assume scape removal as appearing
             harvest_date = ZonedDateTime(2010, 6, 18, tz),
             storage_days = Garlic.storagedays(planting_date),
         )
