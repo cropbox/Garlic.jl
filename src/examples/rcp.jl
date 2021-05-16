@@ -49,7 +49,7 @@ KMSP = (
 
 ND = (KMSP,
     :Phenology => (;
-        critical_photoperiod = 11, # critPPD
+        critical_photoperiod = 12, # critPPD
         initial_leaves_at_harvest = 5, # ILN
         maximum_leaf_tip_appearance_rate_asymptote = 0.60, # LTARa
     ),
