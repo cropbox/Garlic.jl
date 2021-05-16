@@ -4,7 +4,7 @@
     flower_appeared ~ hold
 
     #HACK use LTAR
-    SR_max(LTAR_max): maximum_scaping_rate => LTAR_max ~ track(u"d^-1")
+    SR_max(LTAR_max): maximum_scaping_rate ~ preserve(u"d^-1", parameter)
 
     scape(r=SR_max, β=BF.ΔT) => r*β ~ accumulate(when=scaping)
 
@@ -15,7 +15,8 @@ end
 
 @system ScapeAppearance(Stage, ScapeGrowth) begin
     scape_appearable(scapeable) ~ flag
-    scape_appeared(scape) => (scape >= 3.0) ~ flag
+    scape_appearance_threshold => 3.0 ~ preserve(parameter)
+    scape_appeared(scape, t=scape_appearance_threshold) => (scape >= t) ~ flag
     scape_appearing(scape_appearable & !scape_appeared) ~ flag
 
     # def finish(self):
@@ -38,7 +39,8 @@ end
 
 @system FlowerAppearance(Stage, ScapeGrowth) begin
     flower_appearable(scapeable) ~ flag
-    flower_appeared(scape, scape_removed) => (scape >= 5.0 && !scape_removed) ~ flag
+    flower_appearance_threshold => 5.0 ~ preserve(parameter)
+    flower_appeared(scape, t=flower_appearance_threshold, scape_removed) => (scape >= t && !scape_removed) ~ flag
     flower_appearing(flower_appearable & !flower_appeared) ~ flag
 
     # def finish(self):
@@ -47,7 +49,8 @@ end
 
 @system BulbilAppearance(Stage, ScapeGrowth) begin
     bulbil_appearable(scapeable) ~ flag
-    bulbil_appeared(scape, scape_removed) => (scape >= 5.5 && !scape_removed) ~ flag
+    bulbil_appearance_threshold => 5.5 ~ preserve(parameter)
+    bulbil_appeared(scape, t=bulbil_appearance_threshold, scape_removed) => (scape >= t && !scape_removed) ~ flag
     bulbil_appearing(bulbil_appearable & !bulbil_appeared) ~ flag
 
     # def finish(self):
