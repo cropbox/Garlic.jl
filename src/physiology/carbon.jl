@@ -114,22 +114,6 @@ end
         carbon_supply - maintenance_respiration
     end ~ track(u"g/d", min=0)
 
-    # this is the same as (PhyllochronsSinceTI - lvsAtTI / (totalLeaves - lvsAtTI))
-    carbon_scale => begin
-        #FIXME support multiple species
-        # for maize
-        # see Grant (1989), #of phy elapsed since TI/# of phy between TI and silking
-        #self.p.pheno.grant_scale
-        # not correctly implemented yet for garlic
-        1.0
-    end ~ preserve
-
-    carbon_fraction(s=carbon_scale) => begin
-        # eq 3 in Grant
-        #0.50 + 0.50s # for MAIZSIM
-        0.67 + 0.33s # for garlic
-    end ~ track(max=0.925)
-
     Yg: synthesis_efficiency => begin
         #1 / 1.43 # equivalent Yg, Goudriaan and van Laar (1994)
         #0.75 # synthesis efficiency, ranges between 0.7 to 0.76 for corn, see Loomis and Amthor (1999), Grant (1989), McCree (1988)
@@ -137,54 +121,44 @@ end
         0.8
     end ~ preserve(parameter)
 
-    shoot_carbon(c=carbon_available, carbon_fraction, Yg) => begin
-        # for maize
-        # if self.p.pheno.grain_filling:
-        #     shoot = Yg * c # gCH2O partitioned to shoot
-        # elif self.p.pheno.vegetative_growing:
-        # # shootPart was reduced to 0.37; rootPart was 0.43 in sourcesafe file yy
-        # # SK, commenting it out. Yg needs to be multiplied here because it represents growth respiration.
-        #     shoot = 0.67 * c # these are the amount of carbons allocated with no drought stress
-        carbon_fraction * Yg * c # gCH2O partitioned to shoot
-    end ~ track(u"g/d")
-
-    root_carbon(c=carbon_available, carbon_fraction, Yg) => begin
-        # for maize
-        # if self.p.pheno.grain_filling:
-        #     root = 0 # no more partitioning to root during grain fill
-        # elif self.p.pheno.vegetative_growing:
-        # # shootPart was reduced to 0.37; rootPart was 0.43 in sourcesafe file yy
-        # # SK, commenting it out. Yg needs to be multiplied here because it represents growth respiration.
-        #     root = 0.33 * c # Yang, 6/22/2003
-        (1 - carbon_fraction) * Yg * c # gCH2O partitioned to roots
+    total_carbon(c=carbon_available, Yg) => begin
+        Yg * c # gCH2O partitioned to shoot/root
     end ~ track(u"g/d")
 
     pt: partitioning_table => [
-        # root shoot leaf sheath scape bulb
-          0.00  0.00 0.00   0.00  0.00 0.00 ; # seed
-          0.10  0.00 0.45   0.45  0.00 0.00 ; # vegetative
-          0.10  0.00 0.15   0.25  0.10 0.40 ; # bulb growth with scape
-          0.10  0.00 0.15   0.30  0.00 0.45 ; # bulb growth without scape
-          0.00  0.00 0.00   0.00  0.00 0.00 ; # dead
+        # root leaf sheath scape bulb
+          0.00 0.00   0.00  0.00 0.00 ; # seed
+          0.34 0.33   0.33  0.00 0.00 ; # vegetative
+          0.20 0.15   0.20  0.10 0.35 ; # bulb growth with scape
+          0.10 0.15   0.30  0.00 0.45 ; # bulb growth without scape
+          0.00 0.00   0.00  0.00 0.00 ; # dead
     ] ~ tabulate(
         rows=(:seed, :vegetative, :bulb_growth_with_scape, :bulb_growth_without_scape, :dead),
-        columns=(:root, :shoot, :leaf, :sheath, :scape, :bulb),
+        columns=(:root, :leaf, :sheath, :scape, :bulb),
         parameter
     )
 
-    leaf_carbon(shoot_carbon, pt, dp) => begin
-        shoot_carbon * pt[dp].leaf
+    root_carbon(total_carbon, pt, dp) => begin
+        total_carbon * pt[dp].root
     end ~ track(u"g/d")
 
-    sheath_carbon(shoot_carbon, pt, dp) => begin
-        shoot_carbon * pt[dp].sheath
+    shoot_carbon(total_carbon, root_carbon) => begin
+        total_carbon - root_carbon
     end ~ track(u"g/d")
 
-    scape_carbon(shoot_carbon, pt, dp) => begin
-        shoot_carbon * pt[dp].scape
+    leaf_carbon(total_carbon, pt, dp) => begin
+        total_carbon * pt[dp].leaf
     end ~ track(u"g/d")
 
-    bulb_carbon(shoot_carbon, pt, dp) => begin
-        shoot_carbon * pt[dp].bulb
+    sheath_carbon(total_carbon, pt, dp) => begin
+        total_carbon * pt[dp].sheath
+    end ~ track(u"g/d")
+
+    scape_carbon(total_carbon, pt, dp) => begin
+        total_carbon * pt[dp].scape
+    end ~ track(u"g/d")
+
+    bulb_carbon(total_carbon, pt, dp) => begin
+        total_carbon * pt[dp].bulb
     end ~ track(u"g/d")
 end

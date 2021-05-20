@@ -43,12 +43,12 @@ KMSP = (
         maintenance_respiration_coefficient = 0.012, # Rm
         synthesis_efficiency = 0.8, # Yg
         partitioning_table = [
-        # root shoot leaf sheath scape bulb
-          0.00  0.00 0.00   0.00  0.00 0.00 ; # seed
-          0.10  0.00 0.45   0.45  0.00 0.00 ; # vegetative
-          0.10  0.00 0.15   0.25  0.10 0.40 ; # bulb growth with scape
-          0.10  0.00 0.15   0.30  0.00 0.45 ; # bulb growth without scape
-          0.00  0.00 0.00   0.00  0.00 0.00 ; # dead
+        # root leaf sheath scape bulb
+          0.00 0.00   0.00  0.00 0.00 ; # seed
+          0.10 0.45   0.45  0.00 0.00 ; # vegetative
+          0.10 0.15   0.25  0.10 0.40 ; # bulb growth with scape
+          0.10 0.15   0.30  0.00 0.45 ; # bulb growth without scape
+          0.00 0.00   0.00  0.00 0.00 ; # dead
         ],
     ),
 )

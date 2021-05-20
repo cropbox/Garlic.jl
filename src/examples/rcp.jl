@@ -37,12 +37,12 @@ KMSP = (
         maintenance_respiration_coefficient = 0.012, # Rm
         synthesis_efficiency = 0.8, # Yg
         partitioning_table = [
-        # root shoot leaf sheath scape bulb
-          0.00  0.00 0.00   0.00  0.00 0.00 ; # seed
-          0.10  0.00 0.45   0.45  0.00 0.00 ; # vegetative
-          0.10  0.00 0.15   0.25  0.10 0.40 ; # bulb growth with scape
-          0.10  0.00 0.15   0.30  0.00 0.45 ; # bulb growth without scape
-          0.00  0.00 0.00   0.00  0.00 0.00 ; # dead
+        # root leaf sheath scape bulb
+          0.00 0.00   0.00  0.00 0.00 ; # seed
+          0.34 0.33   0.33  0.00 0.00 ; # vegetative
+          0.20 0.15   0.20  0.10 0.35 ; # bulb growth with scape
+          0.10 0.15   0.30  0.00 0.45 ; # bulb growth without scape
+          0.00 0.00   0.00  0.00 0.00 ; # dead
         ],
     ),
 )
@@ -62,12 +62,12 @@ ND = (KMSP,
     ),
     :Carbon => (
         partitioning_table = [
-        # root shoot leaf sheath scape bulb
-          0.00  0.00 0.00   0.00  0.00 0.00 ; # seed
-          0.50  0.00 0.20   0.25  0.00 0.05 ; # vegetative
-          0.20  0.00 0.10   0.10  0.30 0.30 ; # bulb growth with scape
-          0.10  0.00 0.05   0.05  0.00 0.80 ; # bulb growth without scape
-          0.00  0.00 0.00   0.00  0.00 0.00 ; # dead
+        # root leaf sheath scape bulb
+          0.00 0.00   0.00  0.00 0.00 ; # seed
+          0.35 0.30   0.30  0.00 0.05 ; # vegetative
+          0.20 0.10   0.10  0.30 0.30 ; # bulb growth with scape
+          0.10 0.05   0.05  0.00 0.80 ; # bulb growth without scape
+          0.00 0.00   0.00  0.00 0.00 ; # dead
         ],
     )
 )
