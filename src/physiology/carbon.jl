@@ -34,9 +34,8 @@ end
         carbon_reserve_from_seed - carbon_translocation
     end ~ accumulate(u"g")
 
-    carbon_translocation(carbon_pool, carbon_reserve, carbon_translocation_rate) => begin
-        c = sign(carbon_pool) < 0 ? carbon_reserve : zero(carbon_reserve)
-        c * carbon_translocation_rate
+    carbon_translocation(carbon_reserve, carbon_translocation_rate) => begin
+        carbon_reserve * carbon_translocation_rate
     end ~ track(u"g/d")
 
     carbon_pool(assimilation, carbon_translocation, carbon_supply) => begin
@@ -77,10 +76,14 @@ end
         1 / 5u"hr"
     end ~ preserve(u"hr^-1")
 
+    carbon_translocating(carbon_pool) => begin
+        carbon_pool < 0u"g"
+    end ~ flag
+
     carbon_translocation_rate(carbon_temperature_effect, carbon_growth_factor) => begin
         # C_demand does not enter into equations until grain fill
         carbon_temperature_effect * carbon_growth_factor
-    end ~ track(u"hr^-1")
+    end ~ track(u"hr^-1", when=carbon_translocating)
 
     carbon_supply_rate(carbon_temperature_effect, carbon_growth_factor) => begin
         carbon_temperature_effect * carbon_growth_factor
