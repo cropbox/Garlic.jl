@@ -47,6 +47,11 @@
     end ~ track(u"g/m^2")
     BMC: bulb_moisture_content => 0.85 ~ preserve
 
+    SLA(leaf_area, total_mass): specific_lear_area => begin
+        leaf_area / total_mass
+    end ~ track(u"cm^2/g")
+    LMA(SLA): leaf_mass_per_area => 1 / SLA ~ track(u"g/cm^2")
+
     DAP(pheno.DAP): day_after_planting ~ track::int(u"d")
     time(calendar.time) ~ track::datetime
 end
