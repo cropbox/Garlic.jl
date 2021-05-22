@@ -12,6 +12,8 @@
     scape_carbon ~ hold
     bulb_carbon ~ hold
 
+    agefn ~ hold
+
     # seed weight g/seed
     initial_seed_mass => 0.275 ~ preserve(u"g", parameter)
 
@@ -91,6 +93,30 @@
         #HACK include mobilized carbon pool (for more accurate mass under germination)
         #shoot_mass + root_mass + carbon.pool
         shoot_mass + root_mass
+    end ~ track(u"g")
+
+    living_root_mass(agefn, root_mass) => begin
+        agefn * root_mass
+    end ~ track(u"g")
+
+    living_leaf_mass(agefn, leaf_mass) => begin
+        agefn * leaf_mass
+    end ~ track(u"g")
+
+    living_sheath_mass(agefn, sheath_mass) => begin
+        agefn * sheath_mass
+    end ~ track(u"g")
+
+    living_stalk_mass(living_sheath_mass, scape_mass) => begin
+        living_sheath_mass + scape_mass
+    end ~ track(u"g")
+
+    living_shoot_mass(seed_mass, living_stalk_mass, living_leaf_mass, bulb_mass) => begin
+        seed_mass + living_stalk_mass + living_leaf_mass + bulb_mass
+    end ~ track(u"g")
+
+    living_total_mass(living_shoot_mass, living_root_mass) => begin
+        living_shoot_mass + living_root_mass
     end ~ track(u"g")
 
     # this will only be used for total leaf area adjustment.
