@@ -371,6 +371,7 @@ end
         #200.0
         area / mass
     end ~ track(u"cm^2/g")
+    LMA(SLA): leaf_mass_per_area => 1 / SLA ~ track(u"g/cm^2")
 
     # Maturity
 
