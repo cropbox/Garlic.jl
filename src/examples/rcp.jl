@@ -52,21 +52,25 @@ ND = (KMSP,
         critical_photoperiod = 12, # critPPD
         initial_leaves_at_harvest = 5, # ILN
         maximum_leaf_tip_appearance_rate_asymptote = 0.60, # LTARa
+        scape_appearance_threshold = 1.0,
     ),
     :Leaf => (;
-        #minimum_length_of_longest_leaf = 65.0, # LL
-        stay_green = 1.47, # SG
+        minimum_length_of_longest_leaf = 70.0, # LL
+        maximum_elongation_rate = 5.0, # LL
+        stay_green = 1.6, # SG
     ),
     :Plant => (;
         initial_planting_density = 55.5, # PD0
     ),
     :Carbon => (
+        maintenance_respiration_coefficient = 0.015,
+        synthesis_efficiency = 0.75,
         partitioning_table = [
         # root leaf sheath scape bulb
           0.00 0.00   0.00  0.00 0.00 ; # seed
-          0.35 0.30   0.30  0.00 0.05 ; # vegetative
-          0.20 0.10   0.10  0.30 0.30 ; # bulb growth with scape
-          0.10 0.05   0.05  0.00 0.80 ; # bulb growth without scape
+          0.40 0.25   0.20  0.00 0.05 ; # vegetative
+          0.10 0.05   0.05  0.30 0.50 ; # bulb growth with scape
+          0.05 0.05   0.00  0.00 0.90 ; # bulb growth without scape
           0.00 0.00   0.00  0.00 0.00 ; # dead
         ],
     )
