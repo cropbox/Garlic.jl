@@ -108,7 +108,7 @@ JS = (
 )
 JS_2009 = (JS,
     :Weather => (
-        store = Garlic.loadwea(Garlic.datapath("Korea/jungsil_2009.wea"), tz),
+        store = Garlic.loadwea(Garlic.datapath("Korea/184_2009.wea"), tz),
     ),
     :Calendar => (
         init = ZonedDateTime(2009, 9, 1, tz),
