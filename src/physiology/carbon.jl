@@ -118,7 +118,7 @@ end
     # units very important here, be explicit whether dealing with gC, gCH2O, or gCO2
     maintenance_respiration_tracker(context, weather) ~ ::RespirationTracker
     maintenance_respiration(total_mass, Rm, agefn, q=maintenance_respiration_tracker.ΔT) => begin
-        total_mass * q * Rm # gCH2O dt-1, agefn effect removed. 11/17/14. SK.
+        total_mass * q * Rm * agefn # gCH2O dt-1, agefn effect removed. 11/17/14. SK.
     end ~ track(u"g/d")
 
     carbon_available(carbon_supply, maintenance_respiration) => begin
