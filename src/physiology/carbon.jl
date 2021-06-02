@@ -23,7 +23,7 @@ end
     C_conc: carbon_concentration => begin
         # maize: 40% C, See Kim et al. (2007) EEB
         0.45
-    end ~ preserve(u"percent")
+    end ~ preserve
 
     carbon_reserve_from_seed(seed_mass_export_rate, C_conc, C_to_CH2O_ratio) => begin
         seed_mass_export_rate * C_conc * C_to_CH2O_ratio
