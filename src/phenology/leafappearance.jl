@@ -6,7 +6,8 @@
         LTARa_max / (1 + exp(-k * (SD - SDm)))
     end ~ preserve(u"d^-1", parameter)
 
-    LTAR_max(LTAR_max0, LTARa_max, n=leaves_appeared, n0=initial_leaves, ng=leaves_generic): maximum_leaf_tip_appearance_rate => begin
+    LTAR_max(LTAR_max0, LTARa_max, n=leaves_appeared, ng=leaves_generic): maximum_leaf_tip_appearance_rate => begin
+        n0 = 1
         r0 = LTAR_max0
         r1 = LTARa_max / 2
         r0 + (r1 - r0) * (clamp(n, n0, ng) - n0) / (ng - n0)
