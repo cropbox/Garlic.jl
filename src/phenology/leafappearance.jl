@@ -2,9 +2,15 @@
     LTARa_max: maximum_leaf_tip_appearance_rate_asymptote => 0.4421 ~ preserve(u"d^-1", parameter)
     _SDm => 117.7523 ~ preserve(u"d", parameter)
     _k => 0.0256 ~ preserve(u"d^-1", parameter)
-    LTAR_max(LTARa_max, SD, _SDm, _k): maximum_leaf_tip_appearance_rate => begin
+    LTAR_max0(LTARa_max, SD, _SDm, _k): initial_maximum_leaf_tip_appearance_rate => begin
         LTARa_max / (1 + exp(-k * (SD - SDm)))
     end ~ preserve(u"d^-1", parameter)
+
+    LTAR_max(LTAR_max0, LTARa_max, n=leaves_appeared, n0=initial_leaves, ng=leaves_generic): maximum_leaf_tip_appearance_rate => begin
+        r0 = LTAR_max0
+        r1 = LTARa_max / 2
+        r0 + (r1 - r0) * (clamp(n, n0, ng) - n0) / (ng - n0)
+    end ~ track(u"d^-1")
 
     LTA(r=LTAR_max, β=BF.ΔT): leaf_tip_appearance => r*β ~ accumulate(when=leaf_appearing)
 

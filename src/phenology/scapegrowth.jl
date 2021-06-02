@@ -4,7 +4,7 @@
     flower_appeared ~ hold
 
     #HACK use LTAR
-    SR_max(LTAR_max): maximum_scaping_rate ~ preserve(u"d^-1", parameter)
+    SR_max(LTAR_max): maximum_scaping_rate ~ track(u"d^-1")
 
     scape(r=SR_max, β=BF.ΔT) => r*β ~ accumulate(when=scaping)
 
