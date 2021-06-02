@@ -11,6 +11,7 @@
     sheath_carbon ~ hold
     scape_carbon ~ hold
     bulb_carbon ~ hold
+    nonstructural_carbon_mass ~ hold
 
     agefn ~ hold
 
@@ -74,7 +75,11 @@
     leaf_mass(leaf_carbon) ~ accumulate(u"g")
     sheath_mass(sheath_carbon) ~ accumulate(u"g")
     scape_mass(scape_carbon) ~ accumulate(u"g")
-    bulb_mass(bulb_carbon) ~ accumulate(u"g")
+
+    bulb_structural_mass(bulb_carbon) ~ accumulate(u"g")
+    bulb_mass(bulb_structural_mass, nonstructural_carbon_mass) => begin
+        bulb_structural_mass + nonstructural_carbon_mass
+    end ~ track(u"g")
 
     stalk_mass(sheath_mass, scape_mass) => begin
         #FIXME inconsistency: stem vs. sheath
