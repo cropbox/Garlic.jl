@@ -7,4 +7,6 @@
     C_to_CH2O_ratio(C_weight, CH2O_weight) => begin
         CH2O_weight / C_weight
     end ~ preserve
+
+    CH2O_to_C_ratio(C_to_CH2O_ratio) => (1 / C_to_CH2O_ratio) ~ preserve
 end
