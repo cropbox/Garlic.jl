@@ -66,10 +66,7 @@
     end ~ track(u"mmol/m^2/s" #= H2O =#)
 
     # final values
-    assimilation(A_gross, PD, w=CO2_weight) => begin
-        # grams CO2 per plant per hour
-        A_gross / PD * w
-    end ~ track(u"g/d")
+    assimilation(gross_assimilation) ~ track(u"g/d")
 
     gross_assimilation(A_gross, PD, w=CH2O_weight) => begin
         # grams carbo per plant per hour
