@@ -29,4 +29,6 @@
     leaves_initiated(initial_leaves, leaf_initiation) => begin
         initial_leaves + leaf_initiation
     end ~ track::int(round=:floor)
+
+    leaves_generic => 10 ~ preserve::int(parameter)
 end
