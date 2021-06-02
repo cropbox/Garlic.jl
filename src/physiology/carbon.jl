@@ -30,6 +30,7 @@ end
     end ~ track(u"g/d")
 
     #TODO: take account NSC from bulb
+    #TODO: handle translocation back from carbon pool (i.e. at midnight)
     carbon_reserve(carbon_reserve_from_seed, carbon_translocation) => begin
         carbon_reserve_from_seed - carbon_translocation
     end ~ accumulate(u"g")
