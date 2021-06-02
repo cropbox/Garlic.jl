@@ -42,6 +42,14 @@ end
         assimilation + carbon_translocation - carbon_supply
     end ~ accumulate(u"g")
 
+    nonstructural_carbon(carbon_pool, carbon_reserve) => begin
+        carbon_pool + carbon_reserve
+    end ~ track(u"g")
+
+    nonstructural_carbon_mass(nonstructural_carbon, C_conc, CH2O_to_C_ratio) => begin
+        nonstructural_carbon * CH2O_to_C_ratio / C_conc
+    end ~ track(u"g")
+
     carbon_supply(carbon_pool, carbon_supply_rate) => begin
         carbon_pool * carbon_supply_rate
     end ~ track(u"g/d")
