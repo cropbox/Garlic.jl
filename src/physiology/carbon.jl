@@ -123,7 +123,7 @@ end
 
     carbon_available(carbon_supply, maintenance_respiration) => begin
         carbon_supply - maintenance_respiration
-    end ~ track(u"g/d", min=0)
+    end ~ track(u"g/d")
 
     Yg: synthesis_efficiency => begin
         #1 / 1.43 # equivalent Yg, Goudriaan and van Laar (1994)
