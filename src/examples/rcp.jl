@@ -9,7 +9,7 @@ using BSON
 
 tz = tz"Asia/Seoul"
 
-KMSP = (
+KMSP = @config (
 # # CV PHYL ILN GLN LL LER SG SD LTAR LTARa LIR Topt Tceil critPPD
 # KM1 134 4 10 65.0 4.70 1.84 122 0 0.4421 0.1003 22.28 34.23 12
     :Phenology => (
@@ -47,7 +47,7 @@ KMSP = (
     ),
 )
 
-ND = (KMSP,
+ND = @config (KMSP,
     :Phenology => (;
         critical_photoperiod = 12, # critPPD
         initial_leaves_at_harvest = 5, # ILN
@@ -77,11 +77,11 @@ ND = (KMSP,
     )
 )
 
-GL = (
+GL = @config (
     :Location => (; latitude = 37.1288422, longitude = 128.3628756),
     :Plant => (; initial_planting_density = 55.5),
 )
-GL_2012 = (GL,
+GL_2012 = @config (GL,
     :Weather => (
         store = Garlic.loadwea(Garlic.datapath("Korea/garliclab_2012.wea"), tz),
     ),
@@ -91,7 +91,7 @@ GL_2012 = (GL,
     ),
 )
 ND_GL_2012 = let planting_date = Garlic.date(2012, 10, 4; tz)
-    (
+    @config (
         ND, GL_2012,
         :Phenology => (;
             planting_date,
@@ -102,11 +102,11 @@ ND_GL_2012 = let planting_date = Garlic.date(2012, 10, 4; tz)
     )
 end
 
-JS = (
+JS = @config (
     :Location => (; latitude = 33.46835535536083, longitude = 126.51765156091567),
     :Plant => (; initial_planting_density = 55.5),
 )
-JS_2009 = (JS,
+JS_2009 = @config (JS,
     :Weather => (
         store = Garlic.loadwea(Garlic.datapath("Korea/184_2009.wea"), tz),
     ),
@@ -116,7 +116,7 @@ JS_2009 = (JS,
     ),
 )
 ND_JS_2009 = let planting_date = ZonedDateTime(2009, 9, 15, tz)
-    (
+    @config (
         ND, JS_2009,
         :Phenology => (;
             planting_date,
