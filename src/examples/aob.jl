@@ -177,7 +177,7 @@ using DataFramesMeta
 import Dates
 loaddata(cv, y, p) = begin
     ps = CSV.File(Garlic.datapath("CUH/PhenologySummary.csv")) |> DataFrame |> unitfy
-    @linq ps |> where(:CV .== cv, :Year .== y, :Pgroup .== p) |> select(:DAP, :Leaves)
+    @linq ps |> where(:cultivar .== cv, :year .== y, :planting_group .== p) |> select(:DAP, :leaves)
 end
 
 calibrate_LTAR(cv, y, p) = begin
