@@ -54,6 +54,7 @@
 
     DAP(pheno.DAP): day_after_planting ~ track::int(u"d")
     time(calendar.time) ~ track::datetime
+    date(calendar.date) ~ track::date
 end
 
 @system Model(Plant, Controller)
