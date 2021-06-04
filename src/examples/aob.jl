@@ -206,6 +206,6 @@ calibrate_LTAR(cv, y, p) = begin
         optim=(:MaxSteps => 100,),
     )
 end
-#calibrate_LTAR("KM", 2014, 2)
+#calibrate_LTAR(:KM, 2014, 2)
 
 end

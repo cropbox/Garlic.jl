@@ -1,4 +1,4 @@
-year,cultivar,planting_date (:Date),planting_group,date (:Date),DAP (d),leaves
+year,cultivar (:Symbol),planting_date (:Date),planting_group,date (:Date),DAP (d),leaves
 2013,SP,2013-10-30,1,2013-11-10,12,0.31
 2013,SP,2013-10-30,1,2013-11-15,17,0.71
 2013,SP,2013-10-30,1,2013-11-19,21,1.3
