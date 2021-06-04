@@ -55,10 +55,12 @@ KMSP = @config (
 KM = @config (KMSP, (
     :Phenology => (initial_leaves_at_harvest = 4,), # ILN
     :Leaf => (stay_green = 1.84,), # SG
+    :Meta => (cultivar = :KM,),
 ))
 SP = @config (KMSP, (
     :Phenology => (initial_leaves_at_harvest = 6,), # ILN
     :Leaf => (stay_green = 1.47,), # SG
+    :Meta => (cultivar = :SP,),
 ))
 
 CUH = @config (
@@ -84,6 +86,9 @@ CUH_2013 = @config (CUH, (
         init = ZonedDateTime(2013, 10, 30, tz), # Y1 bgn
         last = ZonedDateTime(2014, 7, 28, tz), #Y2 end
     ),
+    :Meta => (
+        year = 2013,
+    )
 ))
 CUH_2014 = @config (CUH, (
     :Weather => (
@@ -94,27 +99,33 @@ CUH_2014 = @config (CUH, (
         init = ZonedDateTime(2014, 9, 1, 1, tz), # Y1 bgn
         last = ZonedDateTime(2015, 7, 7, tz), #Y2 end
     ),
+    :Meta => (
+        year = 2014,
+    )
 ))
 
-CUH_2013_P1 = @config (CUH_2013, (
+P1 = @config :Meta => (; planting_group = 1)
+P2 = @config :Meta => (; planting_group = 2)
+
+CUH_2013_P1 = @config (CUH_2013, P1, (
     :Phenology => (
         storage_days = 122, # SD
         planting_date = ZonedDateTime(2013, 10, 30, tz), # Y1 sow
     ),
 ))
-CUH_2013_P2 = @config (CUH_2013, (
+CUH_2013_P2 = @config (CUH_2013, P2, (
     :Phenology => (
         storage_days = 170, # SD
         planting_date = ZonedDateTime(2013, 12, 17, tz), # Y1 sow
     ),
 ))
-CUH_2014_P1 = @config (CUH_2014, (
+CUH_2014_P1 = @config (CUH_2014, P1, (
     :Phenology => (
         storage_days = 93, # SD
         planting_date = ZonedDateTime(2014, 10, 1, tz), # Y1 sow
     ),
 ))
-CUH_2014_P2 = @config (CUH_2014, (
+CUH_2014_P2 = @config (CUH_2014, P2, (
     :Phenology => (
         storage_days = 143, # SD
         planting_date = ZonedDateTime(2014, 11, 20, tz), # Y1 sow
