@@ -1,11 +1,15 @@
 @system Emergence(Stage, Germination) begin
     #HACK: can't use self.pheno.leaf_appearance.maximum_leaf_tip_appearance_rate due to recursion
-    ER_max: maximum_emergence_rate => 0.20 ~ preserve(u"d^-1", parameter)
+    ER_max: maximum_emergence_rate => 0.0876 ~ preserve(u"d^-1", parameter)
 
     emergence_date => nothing ~ preserve::datetime(optional, parameter)
     begin_from_emergence(emergence_date) => !isnothing(emergence_date) ~ preserve::Bool
 
-    emergence(r=ER_max, β=BF.ΔT) => r*β ~ accumulate(when=emerging)
+    ER_T_opt: emergence_optimal_temperature => 12.7 ~ preserve(parameter, u"°C")
+    ER_T_ceil: emergence_ceiling_temperature => 35.9 ~ preserve(parameter, u"°C")
+    ER_BF(context, T, To=ER_T_opt', Tx=ER_T_ceil'): emergence_beta_function ~ ::BetaFunction
+
+    emergence(r=ER_max, β=ER_BF.ΔT) => r*β ~ accumulate(when=emerging)
 
     emergeable(germinated) ~ flag
     emerged(emergence, begin_from_emergence, emergence_date, t=calendar.time) => begin
