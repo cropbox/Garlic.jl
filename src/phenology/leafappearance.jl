@@ -23,6 +23,6 @@
     leaf_appearing(leaf_appearable & !leaf_appeared) ~ flag
 
     #HACK set initial leaf appearance to 1, not 0, to better describe stroage effect (2016-11-14: KDY, SK, JH)
-    ILTA: initial_leaf_tip_appearance => 1 ~ track::int(when=begin_from_emergence & leaf_appearable)
+    ILTA: initial_leaf_tip_appearance => 1 ~ track::int(when=leaf_appearable)
     leaves_appeared(ILTA, LTA) => (ILTA + LTA) ~ track::int(round=:floor)
 end
