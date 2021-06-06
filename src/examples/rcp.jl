@@ -50,8 +50,8 @@ KMSP = @config (
 ND = @config (KMSP,
     :Phenology => (;
         critical_photoperiod = 12, # critPPD
-        initial_leaves_at_harvest = 5, # ILN
-        maximum_leaf_tip_appearance_rate_asymptote = 0.4, # LTARa
+        initial_leaves_at_harvest = 6, # ILN
+        maximum_leaf_tip_appearance_rate_asymptote = 0.4421, # LTARa
         scape_appearance_threshold = 1.0,
     ),
     :Leaf => (;
