@@ -127,6 +127,31 @@ ND_JS_2009 = let planting_date = ZonedDateTime(2009, 9, 15, tz)
     )
 end
 
+RICCA = @config (
+    :Location => (; latitude = 33, longitude = 126),
+    :Plant => (; initial_planting_density = 55.5),
+)
+RICCA_2014 = @config (JS,
+    :Weather => (
+        store = Garlic.loadwea(Garlic.datapath("Korea/184_2014.wea"), tz),
+    ),
+    :Calendar => (
+        init = ZonedDateTime(2014, 10, 1, tz),
+        last = ZonedDateTime(2015, 6, 30, tz),
+    ),
+)
+ND_RICCA_2014 = let planting_date = ZonedDateTime(2014, 10, 8, tz)
+    @config (
+        ND, RICCA_2014,
+        :Phenology => (;
+            planting_date,
+            scape_removal_date = nothing,
+            harvest_date = ZonedDateTime(2015, 6, 19, tz),
+            storage_days = Garlic.storagedays(planting_date),
+        )
+    )
+end
+
 STATION_NAMES = Dict(
     101 => :Chuncheon,
     165 => :Mokpo,
