@@ -50,14 +50,14 @@ KMSP = @config (
 ND = @config (KMSP,
     :Phenology => (;
         critical_photoperiod = 12, # critPPD
-        initial_leaves_at_harvest = 6, # ILN
+        initial_leaves_at_harvest = 5, # ILN
         maximum_leaf_tip_appearance_rate_asymptote = 0.4421, # LTARa
         scape_appearance_threshold = 1.0,
     ),
     :Leaf => (;
         minimum_length_of_longest_leaf = 65.0, # LL
-        maximum_elongation_rate = 4.7, # LL
-        stay_green = 1.47, # SG
+        maximum_elongation_rate = 4.0, # LER
+        stay_green = 1.5, # SG
     ),
     :Plant => (;
         initial_planting_density = 55.5, # PD0
