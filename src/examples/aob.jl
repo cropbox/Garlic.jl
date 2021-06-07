@@ -21,15 +21,12 @@ KMSP = @config (
     :Phenology => (
         optimal_temperature = 22.28, # Topt
         ceiling_temperature = 34.23, # Tceil
-        maximum_germination_rate = 0.45,
-        maximum_emergence_rate = 0.0876,
         critical_photoperiod = 12, # critPPD
         #initial_leaves_at_harvest = , # ILN
         maximum_leaf_initiation_rate = 0.1003, # LIR
         # storage_days = 100, # SD
         storage_temperature = 5,
-        # maximum_leaf_tip_appearance_rate = 0, # LTAR (tracked)
-        maximum_leaf_tip_appearance_rate_asymptote = 0.4421, # LTARa
+        maximum_phyllochron_asymptote = 0.4421, # PHYLCa
         leaves_generic = 10, # GLN
     ),
     :Leaf => (
@@ -202,7 +199,7 @@ calibrate_LTAR(cv, y, p) = begin
         stop="calendar.count",
         index=:DAP,
         target=:Leaves => :leaves_appeared,
-        parameters=:Phenology => :LTAR_max => (0.01, 0.80),
+        parameters=:Phenology => :PHYLCa_max => (0.01, 0.80),
         snap=f,
         optim=(:MaxSteps => 100,),
     )
