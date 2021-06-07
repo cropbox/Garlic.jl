@@ -1,4 +1,4 @@
-﻿cultivar,planting_date (:Date),measuring_date (:Date),plant_height (g),bulb_fresh_weight (g),bulb_dry_weight (g),bulb_natrual_dry_weight (g),stem_fresh_weight (g),stem_dry_weight (g),leaf_fresh_weight (g),leaf_dry_weight (g),stem_leaf_natural_dry_weight (g),leaf_count,leaf_area (cm^2),bulb_diameter (mm),stem_diameter (mm)
+﻿cultivar,planting_date (:Date),measuring_date (:Date),plant_height (cm),bulb_fresh_weight (g),bulb_dry_weight (g),bulb_natural_dry_weight (g),stem_fresh_weight (g),stem_dry_weight (g),leaf_fresh_weight (g),leaf_dry_weight (g),stem_leaf_natural_dry_weight (g),leaf_count,leaf_area (cm^2),bulb_diameter (mm),stem_diameter (mm)
 ND,2009-09-15,2010-02-03,44,8.8,1.23,,8.55,1.02,9.16,1.45,,8,96.9,,
 ND,2009-09-15,2010-02-03,52.5,12.6,1.5,,15.32,1.77,22.23,3.17,,9,240.69,,
 ND,2009-09-15,2010-02-03,50,8.97,1.04,,10.59,1.14,16.56,2.05,,8,158.29,,
