@@ -44,10 +44,11 @@ KMSP = @config (
         synthesis_efficiency = 0.8, # Yg
         partitioning_table = [
         # root leaf sheath scape bulb
-          0.00 0.00   0.00  0.00 0.00 ; # seed
-          0.10 0.45   0.45  0.00 0.00 ; # vegetative
-          0.10 0.15   0.25  0.10 0.40 ; # bulb growth with scape
-          0.10 0.15   0.30  0.00 0.45 ; # bulb growth without scape
+          0.00 0.00   0.00  0.00 0.00 ; # seed garlic before germination
+          0.10 0.45   0.45  0.00 0.00 ; # vegetative stage between germination and scape initiation
+          0.10 0.15   0.25  0.10 0.40 ; # period between scape initiation and scape appearance
+          0.10 0.15   0.25  0.10 0.40 ; # period after scape appearance before removal (scape stays intact)
+          0.10 0.15   0.30  0.00 0.45 ; # period after scape removal (scape appeared and subsequently removed)
           0.00 0.00   0.00  0.00 0.00 ; # dead
         ],
     ),

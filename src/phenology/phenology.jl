@@ -78,7 +78,7 @@ include("death.jl")
     #     end
     # end ~ track::str
 
-    development_phase(germinated, floral_initiated, dead, scape_removed) => begin
+    development_phase(germinated, floral_initiated, dead, scape_removed, scape_appeared) => begin
         if !germinated
             :seed
         elseif !floral_initiated
@@ -86,9 +86,13 @@ include("death.jl")
         elseif dead
             :dead
         elseif !scape_removed
-            :bulb_growth_with_scape
+            if !scape_appeared
+                :bulb_growth_before_scape_appearance
+            else
+                :bulb_growth_after_scape_appearance
+            end
         else
-            :bulb_growth_without_scape
+            :bulb_growth_after_scape_removal
         end
     end ~ track::sym
 end

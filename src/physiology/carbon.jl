@@ -139,13 +139,14 @@ end
 
     pt: partitioning_table => [
         # root leaf sheath scape bulb
-          0.00 0.00   0.00  0.00 0.00 ; # seed
-          0.34 0.33   0.33  0.00 0.00 ; # vegetative
-          0.20 0.15   0.20  0.10 0.35 ; # bulb growth with scape
-          0.10 0.15   0.30  0.00 0.45 ; # bulb growth without scape
+          0.00 0.00   0.00  0.00 0.00 ; # seed garlic before germination
+          0.34 0.33   0.33  0.00 0.00 ; # vegetative stage between germination and scape initiation
+          0.20 0.15   0.20  0.10 0.35 ; # period between scape initiation and scape appearance
+          0.20 0.15   0.20  0.10 0.35 ; # period after scape appearance before removal (scape stays intact)
+          0.10 0.15   0.30  0.00 0.45 ; # period after scape removal (scape appeared and subsequently removed)
           0.00 0.00   0.00  0.00 0.00 ; # dead
     ] ~ tabulate(
-        rows=(:seed, :vegetative, :bulb_growth_with_scape, :bulb_growth_without_scape, :dead),
+        rows=(:seed, :vegetative, :bulb_growth_before_scape_appearance, :bulb_growth_after_scape_appearance, :bulb_growth_after_scape_removal, :dead),
         columns=(:root, :leaf, :sheath, :scape, :bulb),
         parameter
     )
