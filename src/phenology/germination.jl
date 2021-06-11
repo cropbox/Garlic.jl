@@ -9,7 +9,7 @@
     end ~ accumulate(when=germinating)
 
     germinateable(planting_date, t=calendar.time) => (t >= planting_date) ~ flag
-    germinated(germination, germinateable, begin_from_emergence) => (germination >= 0.5 || (germinateable && begin_from_emergence)) ~ flag
+    germinated(germination, germinateable, begin_from_emergence) => (germination >= 1 || (germinateable && begin_from_emergence)) ~ flag
     germinating(germinateable & !germinated) ~ flag
 
     #FIXME postprocess similar to @produce?
