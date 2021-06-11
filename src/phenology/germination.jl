@@ -1,9 +1,15 @@
-@system Germination(Stage, Phyllochron) begin
+@system Germination(Stage) begin
     planting_date ~ hold
     #HACK: can't mixin Emergence here due to cyclic dependency
     begin_from_emergence ~ hold
 
-    germination(r=PHYLC_max, β=BF.ΔT) => begin
+    GR_max: maximum_germination_rate => 0.0876 ~ preserve(u"d^-1", parameter)
+
+    GR_T_opt: germination_optimal_temperature => 12.7 ~ preserve(parameter, u"°C")
+    GR_T_ceil: germination_ceiling_temperature => 35.9 ~ preserve(parameter, u"°C")
+    GR_BF(context, T, To=GR_T_opt', Tx=GR_T_ceil'): germination_beta_function ~ ::BetaFunction
+
+    germination(r=GR_max, β=GR_BF.ΔT) => begin
         #FIXME prevent extra accumulation after it's `over`
         r * β
     end ~ accumulate(when=germinating)
