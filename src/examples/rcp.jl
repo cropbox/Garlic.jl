@@ -48,7 +48,7 @@ KMSP = @config (
 ND = @config (KMSP,
     :Phenology => (;
         critical_photoperiod = 12, # critPPD
-        initial_leaves_at_harvest = 5, # ILN
+        initial_leaves_at_harvest = 6, # ILN
         maximum_phyllochron_asymptote = 0.4421, # PHYLCa
         scape_appearance_threshold = 1.0,
     ),
