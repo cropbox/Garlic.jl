@@ -1,10 +1,10 @@
-@system ScapeGrowth(Stage, Phyllochron, FloralInitiation) begin
+@system ScapeGrowth(Stage, LeafAppearance, FloralInitiation) begin
     #HACK: can't mixin ScapeRemoval/FlowerAppearance due to cyclic dependency
     scape_removed ~ hold
     flower_appeared ~ hold
 
     #HACK: use phyllochron
-    SR_max(PHYLC_max): maximum_scaping_rate ~ track(u"d^-1")
+    SR_max(LTAR_max): maximum_scaping_rate ~ track(u"d^-1")
 
     scape(r=SR_max, β=BF.ΔT) => r*β ~ accumulate(when=scaping)
 

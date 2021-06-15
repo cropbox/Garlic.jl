@@ -1,7 +1,7 @@
 include("stage.jl")
-include("phyllochron.jl")
-include("germination.jl")
+include("planting.jl")
 include("emergence.jl")
+include("germination.jl")
 include("floralinitiation.jl")
 include("leafinitiation.jl")
 include("leafappearance.jl")
@@ -11,8 +11,9 @@ include("death.jl")
 
 #TODO make a common class to be shared by Garlic and MAIZSIM
 @system Phenology(
-    Germination,
+    Planting,
     Emergence,
+    Germination,
     FloralInitiation,
     LeafInitiation,
     LeafAppearance,

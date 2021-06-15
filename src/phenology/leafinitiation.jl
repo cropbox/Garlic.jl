@@ -1,4 +1,4 @@
-@system LeafInitiation(Stage, Germination, FloralInitiation) begin
+@system LeafInitiation(Stage, Planting, FloralInitiation) begin
     SD: storage_days => 100 ~ preserve(u"d", parameter)
     ST: storage_temperature => 5 ~ preserve(u"°C", parameter)
     #FIXME: ThermalTime only accepts override of track, not preserve
@@ -16,7 +16,7 @@
 
     #HACK original garlic model assumed leaves are being initiated when the seeds are sown
     #HACK maize model model assumed leaf initiation begins when germination is over
-    leaf_initiateable(germinated) ~ flag
+    leaf_initiateable(planted) ~ flag
 
     # for maize
     #leaf_initiated(pheno.tassel_initiation.over) ~ flag

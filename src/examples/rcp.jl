@@ -20,7 +20,7 @@ KMSP = @config (
         maximum_leaf_initiation_rate = 0.1003, # LIR
         # storage_days = 100, # SD
         storage_temperature = 5,
-        maximum_phyllochron_asymptote = 0.4421, # PHYLCa
+        maximum_phyllochron_asymptote = 0.4421, # LTARa
         leaves_generic = 10, # GLN
     ),
     :Leaf => (
@@ -49,7 +49,7 @@ ND = @config (KMSP,
     :Phenology => (;
         critical_photoperiod = 12, # critPPD
         initial_leaves_at_harvest = 6, # ILN
-        maximum_phyllochron_asymptote = 0.4421, # PHYLCa
+        maximum_phyllochron_asymptote = 0.4421, # LTARa
         scape_appearance_threshold = 1.0,
     ),
     :Leaf => (;

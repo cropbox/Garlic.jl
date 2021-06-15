@@ -26,7 +26,7 @@ KMSP = @config (
         maximum_leaf_initiation_rate = 0.1003, # LIR
         # storage_days = 100, # SD
         storage_temperature = 5,
-        maximum_phyllochron_asymptote = 0.4421, # PHYLCa
+        maximum_phyllochron_asymptote = 0.4421, # LTARa
         leaves_generic = 10, # GLN
     ),
     :Leaf => (
@@ -199,7 +199,7 @@ calibrate_LTAR(cv, y, p) = begin
         stop="calendar.count",
         index=:DAP,
         target=:Leaves => :leaves_appeared,
-        parameters=:Phenology => :PHYLCa_max => (0.01, 0.80),
+        parameters=:Phenology => :LTARa_max => (0.01, 0.80),
         snap=f,
         optim=(:MaxSteps => 100,),
     )
