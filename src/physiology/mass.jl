@@ -116,12 +116,12 @@
         living_sheath_mass + scape_mass
     end ~ track(u"g")
 
-    living_shoot_mass(seed_mass, living_stalk_mass, living_leaf_mass, bulb_mass) => begin
-        seed_mass + living_stalk_mass + living_leaf_mass + bulb_mass
+    living_shoot_mass(seed_mass, living_stalk_mass, living_leaf_mass) => begin
+        seed_mass + living_stalk_mass + living_leaf_mass
     end ~ track(u"g")
 
-    living_total_mass(living_shoot_mass, living_root_mass) => begin
-        living_shoot_mass + living_root_mass
+    living_total_mass(living_shoot_mass, living_root_mass, bulb_mass) => begin
+        living_shoot_mass + living_root_mass + bulb_mass
     end ~ track(u"g")
 
     # this will only be used for total leaf area adjustment.
