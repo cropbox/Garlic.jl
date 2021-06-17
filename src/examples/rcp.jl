@@ -38,7 +38,7 @@ KMSP = @config (
           0.00 0.00   0.00  0.00 0.00 ; # seed garlic before germination
           0.35 0.30   0.25  0.00 0.10 ; # vegetative stage between germination and scape initiation
           0.15 0.15   0.10  0.25 0.35 ; # period between scape initiation and scape appearance
-          0.10 0.00   0.00  0.40 0.50 ; # period after scape appearance before removal (scape stays intact)
+          0.05 0.10   0.00  0.35 0.50 ; # period after scape appearance before removal (scape stays intact)
           0.05 0.00   0.00  0.00 0.95 ; # period after scape removal (scape appeared and subsequently removed)
           0.00 0.00   0.00  0.00 0.00 ; # dead
         ],
@@ -49,12 +49,13 @@ ND = @config (KMSP,
     :Phenology => (;
         critical_photoperiod = 12, # critPPD
         initial_leaves_at_harvest = 6, # ILN
+        storage_temperature = 8,
         maximum_phyllochron_asymptote = 0.4421, # LTARa
-        scape_appearance_threshold = 1.0,
+        scape_appearance_threshold = 3.0,
     ),
     :Leaf => (;
-        minimum_length_of_longest_leaf = 65.0, # LL
-        maximum_elongation_rate = 4.0, # LER
+        minimum_length_of_longest_leaf = 90.0, # LL
+        maximum_elongation_rate = 90.0 / 20, # LER
         stay_green = 1.5, # SG
     ),
     :Plant => (;
@@ -68,7 +69,7 @@ ND = @config (KMSP,
           0.00 0.00   0.00  0.00 0.00 ; # seed garlic before germination
           0.35 0.30   0.25  0.00 0.10 ; # vegetative stage between germination and scape initiation
           0.15 0.15   0.10  0.25 0.35 ; # period between scape initiation and scape appearance
-          0.10 0.00   0.00  0.40 0.50 ; # period after scape appearance before removal (scape stays intact)
+          0.05 0.10   0.00  0.35 0.50 ; # period after scape appearance before removal (scape stays intact)
           0.05 0.00   0.00  0.00 0.95 ; # period after scape removal (scape appeared and subsequently removed)
           0.00 0.00   0.00  0.00 0.00 ; # dead
         ],
