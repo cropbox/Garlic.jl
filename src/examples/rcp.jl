@@ -150,6 +150,12 @@ ND_RICCA_2014 = let planting_date = ZonedDateTime(2014, 10, 8, tz)
         )
     )
 end
+ND_RICCA_2014_field = @config ND_RICCA_2014
+ND_RICCA_2014_tgc = @config (ND_RICCA_2014,
+    :Phenology => (;
+        emergence_date = ZonedDateTime(2014, 10, 10, tz), #HACK: 3-9 plants per section already emerged on 10-13
+    ),
+)
 
 STATION_NAMES = Dict(
     101 => :Chuncheon,
