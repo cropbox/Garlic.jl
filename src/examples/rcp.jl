@@ -184,11 +184,11 @@ LATLONGS = Dict(
 )
 
 korea_config(; config=(), tz=tz, kw...) = _korea_config(; config, meta=kw, tz, kw...)
-_korea_config(; config=(), meta=(), tz=tz, station, year, sowing_day, scape_removal_day) = begin
+_korea_config(; config=(), meta=(), tz=tz, station, year, sowing_day, emergence_day, scape_removal_day) = begin
     latlongs = LATLONGS[station]
     name = "$(station)_$(year)"
     weaname = Garlic.datapath("Korea/$name.wea")
-    garlic_config(; config, meta, tz, latlongs..., weaname, year, sowing_day, scape_removal_day)
+    garlic_config(; config, meta, tz, latlongs..., weaname, year, sowing_day, emergence_day, scape_removal_day)
 end
 
 rcp_co2(scenario, year) = begin
@@ -205,19 +205,20 @@ rcp_co2(scenario, year) = begin
 end
 
 rcp_config(; config=(), tz=tz, kw...) = _rcp_config(; config, meta=kw, tz, kw...)
-_rcp_config(; config=(), meta=(), tz=tz, scenario, station, year, repetition, sowing_day, scape_removal_day) = begin
+_rcp_config(; config=(), meta=(), tz=tz, scenario, station, year, repetition, sowing_day, emergence_day, scape_removal_day) = begin
     latlongs = LATLONGS[station]
     name = "$(scenario)_$(station)_$(year)_$(repetition)"
     weaname = Garlic.datapath("RCP/$name.wea")
     CO2 = rcp_co2(scenario, year)
-    garlic_config(; config, meta, tz, latlongs..., weaname, CO2, year, sowing_day, scape_removal_day)
+    garlic_config(; config, meta, tz, latlongs..., weaname, CO2, year, sowing_day, emergence_day, scape_removal_day)
 end
 
-garlic_config(; config=(), meta=(), tz=tz, latitude, longitude, altitude=20, weaname, CO2=390, year, sowing_day, scape_removal_day) = begin
+garlic_config(; config=(), meta=(), tz=tz, latitude, longitude, altitude=20, weaname, CO2=390, year, sowing_day, emergence_day, scape_removal_day) = begin
     start_date = Garlic.date(year, 9, 1; tz)
     end_date = Garlic.date(year+1, 6, 30; tz)
 
     planting_date = Garlic.date(year, sowing_day; tz)
+    emergence_date = isnothing(emergence_day) ? nothing : planting_date + Day(emergence_day)
     scape_removal_date = Garlic.date(year, scape_removal_day; tz)
     harvest_date = Garlic.date(year+1, 5, 15; tz)
     storage_days = Garlic.storagedays(planting_date)
@@ -238,6 +239,7 @@ garlic_config(; config=(), meta=(), tz=tz, latitude, longitude, altitude=20, wea
         ),
         :Phenology => (;
             planting_date,
+            emergence_date,
             scape_removal_date,
             harvest_date,
             storage_days,
@@ -260,6 +262,7 @@ rcp_settings = (;
     year = 2020:10:2090,
     repetition = 0:9,
     sowing_day = 240:10:350,
+    emergence_day = [nothing, 1, 7, 14],
     scape_removal_day = [1],
 )
 normal_settings = (;
@@ -268,6 +271,7 @@ normal_settings = (;
     year = [1980],
     repetition = 0:9,
     sowing_day = 240:10:350,
+    emergence_day = [nothing, 1, 7, 14],
     scape_removal_day = [1],
 )
 rcp_run(; configurator=rcp_config, settings=rcp_settings, kw...) = garlic_run(; configurator, settings, kw...)
@@ -276,6 +280,7 @@ korea_settings = (;
     station = [185, 101], # Gosan, Chuncheon
     year = 2007:2016,
     sowing_day = 240:10:350,
+    emergence_day = [nothing, 1, 7, 14],
     scape_removal_day = [1],
 )
 korea_run(; configurator=korea_config, settings=korea_settings, kw...) = garlic_run(; configurator, settings, kw...)
