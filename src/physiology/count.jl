@@ -8,4 +8,6 @@
     leaves_growing(x=NU["*"].leaf.growing) => sum(x) ~ track::int
     leaves_mature(x=NU["*"].leaf.mature) => sum(x) ~ track::int
     leaves_dropped(x=NU["*"].leaf.dropped) => sum(x) ~ track::int
+
+    leaves_fresh(a=leaves_appeared, d=leaves_dropped) => (a - d) ~ track::int
 end
