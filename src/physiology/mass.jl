@@ -74,7 +74,9 @@
     root_mass(root_carbon) ~ accumulate(u"g")
     leaf_mass(leaf_carbon) ~ accumulate(u"g")
     sheath_mass(sheath_carbon) ~ accumulate(u"g")
-    scape_mass(scape_carbon) ~ accumulate(u"g")
+
+    scape_structural_mass(scape_carbon) ~ accumulate(u"g")
+    scape_mass(scape_structural_mass) ~ track(u"g", when=!pheno.scape_removed)
 
     bulb_structural_mass(bulb_carbon) ~ accumulate(u"g")
     bulb_mass(bulb_structural_mass, nonstructural_carbon_mass) => begin
