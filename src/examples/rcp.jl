@@ -54,8 +54,8 @@ ND = @config (KMSP,
         scape_appearance_threshold = 3.0,
     ),
     :Leaf => (;
-        minimum_length_of_longest_leaf = 100.0, # LL
-        maximum_elongation_rate = 100.0 / 18, # LER
+        minimum_length_of_longest_leaf = 90.0, # LL
+        maximum_elongation_rate = 90.0 / 18, # LER
         stay_green = 1.5, # SG
     ),
     :Plant => (;
