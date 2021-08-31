@@ -195,11 +195,13 @@ rcp_co2(scenario, year) = begin
     if scenario == :RCP00
         return 390
     end
-    x = [2005, 2050, 2100, 2150, 2250, 2300]
+    # Table All.4.1
+    # https://www.ipcc.ch/site/assets/uploads/2017/09/WG1AR5_AnnexII_FINAL.pdf
+    x = [2000, 2005, 2010, 2020, 2030, 2040, 2050, 2060, 2070, 2080, 2090, 2100]
     y = if scenario == :RCP45
-        [379, 487, 538, 543, 543, 543]
+        [368.9, 378.8, 389.1, 411.1, 435.0, 460.8, 486.5, 508.9, 524.3, 531.1, 533.7, 538.4]
     elseif scenario == :RCP85
-        [379, 541, 936, 1429, 1962, 1962]
+        [368.9, 378.8, 389.3, 415.8, 448.8, 489.4, 540.5, 603.5, 677.1, 758.2, 844.8, 935.9]
     end
     LinearInterpolation(x, Float64.(y))(year)
 end
