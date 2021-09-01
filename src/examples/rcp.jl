@@ -195,7 +195,7 @@ rcp_co2(scenario, year) = begin
     if scenario == :RCP00
         return 390
     end
-    # Table All.4.1
+    # Table AII.4.1
     # https://www.ipcc.ch/site/assets/uploads/2017/09/WG1AR5_AnnexII_FINAL.pdf
     x = [2000, 2005, 2010, 2020, 2030, 2040, 2050, 2060, 2070, 2080, 2090, 2100]
     y = if scenario == :RCP45
