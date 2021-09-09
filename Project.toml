@@ -15,7 +15,7 @@ TimeZones = "f269a46b-ccf7-5d73-abea-4c690281aa53"
 
 [compat]
 BSON = "0.3"
-CSV = "0.8"
+CSV = "0.8, 0.9"
 Cropbox = "0.3"
 DataFrames = "1"
 DataFramesMeta = "0.8, 0.9"
