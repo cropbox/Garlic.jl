@@ -5,8 +5,8 @@
     #FIXME: leaves_potential is already max(leaves_generic, leaves_total)?
     n(np=pheno.leaves_potential, ng=pheno.leaves_generic): leaf_count => max(np, ng) ~ track
     Tn: minimum_temperature => 0 ~ preserve
-    To(n): optimal_temperature => 0.88n ~ preserve
-    Tx(n): maximum_temperature => 1.64n ~ preserve
+    To(n): optimal_temperature => 0.88n ~ track
+    Tx(n): maximum_temperature => 1.64n ~ track
 end
 
 @system LeafColdInjury begin
