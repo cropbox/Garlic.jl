@@ -1,7 +1,7 @@
 name = "Garlic"
 uuid = "154c3855-1f1e-46e8-b837-ca60023b1bfc"
 authors = ["Kyungdahm Yun <tomyun@gmail.com>"]
-version = "0.1.24-DEV"
+version = "0.1.24"
 
 [deps]
 BSON = "fbb218c0-5317-5bc6-957e-2ee96dd4b1f0"
