@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Home · Garlic.jl</title><script async src="https://www.googletagmanager.com/gtag/js?id=UA-192782823-1"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-192782823-1', {'page_path': location.pathname + location.search + location.hash});
+</script><script data-outdated-warner src="assets/warner.js"></script><link rel="canonical" href="https://cropbox.github.io/Garlic.jl/stable/"/><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.045/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.24/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="assets/documenter.js"></script><script src="siteinfo.js"></script><script src="../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="assets/themeswap.js"></script><link href="assets/favicon.ico" rel="icon" type="image/x-icon"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href><img src="assets/logo.svg" alt="Garlic.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href>Garlic.jl</a></span></div><form class="docs-search" action="search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li class="is-active"><a class="tocitem" href>Home</a><ul class="internal"><li><a class="tocitem" href="#Installation"><span>Installation</span></a></li><li><a class="tocitem" href="#Getting-Started"><span>Getting Started</span></a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>Home</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Home</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/cropbox/Garlic.jl/blob/main/docs/src/index.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="Garlic.jl"><a class="docs-heading-anchor" href="#Garlic.jl">Garlic.jl</a><a id="Garlic.jl-1"></a><a class="docs-heading-anchor-permalink" href="#Garlic.jl" title="Permalink"></a></h1><p><a href="https://github.com/cropbox/Garlic.jl">Garlic.jl</a> is a reimplementation of garlic model using <a href="https://github.com/cropbox/Cropbox.jl">Cropbox</a> framework. The <a href="https://github.com/uwkimlab/cropbox-garlic">original model</a> was written in C++ and published in &quot;<a href="https://doi.org/10.1093/aob/mcz060">A process-based model for leaf development and growth in hardneck garlic (<em>Allium sativum</em>)</a>&quot;.</p><h2 id="Installation"><a class="docs-heading-anchor" href="#Installation">Installation</a><a id="Installation-1"></a><a class="docs-heading-anchor-permalink" href="#Installation" title="Permalink"></a></h2><pre><code class="language-julia hljs">using Pkg
+Pkg.add(&quot;Garlic&quot;)</code></pre><h2 id="Getting-Started"><a class="docs-heading-anchor" href="#Getting-Started">Getting Started</a><a id="Getting-Started-1"></a><a class="docs-heading-anchor-permalink" href="#Getting-Started" title="Permalink"></a></h2><pre><code class="language-julia hljs">using Cropbox
+using Garlic</code></pre><p>The model is a system named <code>Model</code> defined in <code>Garlic</code> module.</p><pre><code class="language-julia hljs">parameters(Garlic.Model; alias = true, recursive = true)</code></pre><p style="font-family: monospace">Config for 21 systems:</p>
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">Clock</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">init</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0 hr</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">step</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">1 hr</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">Context</th>
+</tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">BetaFunction</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">maximum_temperature</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">nothing</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">minimum_temperature</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0 °C</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">optimal_temperature</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">nothing</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">beta</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">1</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">GrowingDegree</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">base_temperature</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">nothing</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">maximum_temperature</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">nothing</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">optimal_temperature</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">nothing</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">Q10Function</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">Q10</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">2</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">optimal_temperature</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">nothing</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">Phenology</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">optimal_temperature</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">22.28 °C</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">ceiling_temperature</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">34.23 °C</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">planting_date</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">nothing</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">emergence_date</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">nothing</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">maximum_emergence_rate</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.0876 d⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">emergence_optimal_temperature</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">12.7 °C</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">emergence_ceiling_temperature</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">35.9 °C</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">critical_photoperiod</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">12.5 hr</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">storage_days</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">100 d</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">storage_temperature</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">5 °C</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">initial_leaves_at_harvest</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">4</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">maximum_leaf_initiation_rate</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.2 d⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">maximum_phyllochron_asymptote</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.4421 d⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">__LeafAppearance__SDm</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">117.752 d</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">__LeafAppearance__k</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.0256 d⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">initial_maximum_phyllochron</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">missing</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">leaves_generic</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">10</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">scape_removal_date</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">nothing</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">flower_appearance_threshold</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">5.0</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">scape_appearance_threshold</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">3.0</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">bulbil_appearance_threshold</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">5.5</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">Soil</th>
+</tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">Location</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">latitude</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">36°</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">longitude</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">128°</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">altitude</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">20 m</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">Sun</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">transmissivity</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.5</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">solar_constant</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">1370 W m⁻²</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">photosynthetic_active_radiation_conversion_factor</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">4.6 μmol J⁻¹</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">Calendar</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">init</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">nothing</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">last</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">nothing</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">VaporPressure</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">a</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.611 kPa</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">b</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">17.502</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">c</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">240.97</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">Weather</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">store</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">nothing</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">CO2</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">400 μmol mol⁻¹</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">LeafLengthTracker</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">beta</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">1</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">Leaf</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">maximum_elongation_rate</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">12 cm d⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">longevity</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">50 d</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">cold_injury_factor1</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">-0.1 K⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">cold_injury_factor2</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">1.6</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">cold_injury_critical_temperature</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0 °C</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">__LeafColdInjury__enable</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">true</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">minimum_length_of_longest_leaf</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">60 cm</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">length_to_width_ratio</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.05</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">area_ratio</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.75</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">stay_green</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">3.5</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">maximum_length_of_longest_leaf_adjustment</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0 cm²</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">Sheath</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">growth_duration</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">10 d</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">longevity</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">50 d</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">NodalUnit</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">growth_duration</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">10 d</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">longevity</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">50 d</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">RespirationTracker</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">Q10</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">2</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">optimal_temperature</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">20 °C</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">Radiation</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">leaf_angle</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">ellipsoidal</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">leaf_angle_factor</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.7</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">wave_band</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">photosynthetically_active_radiation</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">scattering</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.15</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">clumping</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">1.0</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">soil_reflectivity</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.1</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">GasExchange</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">leaf_width</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.1 m</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">stomatal_ratio</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">1.0</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">kinematic_viscosity_of_air_at_20</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">1.51e-5 m² s⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">thermal_diffusivity_of_air_at_20</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">2.15e-5 m² s⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">g0</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.096 mol bar⁻¹ m⁻² s⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">g1</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">6.824</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">diffusivity_ratio_boundary_layer</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">1.37</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">diffusivity_ratio_air</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">1.6</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">leaf_scattering</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.15</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">leaf_spectral_correction</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.15</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">leaf_thermal_emissivity</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.97</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">latent_heat_of_vaporization_at_25</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">44 kJ mol⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">specific_heat_of_air</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">29.3 J K⁻¹ mol⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">absorption_coefficient</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.5</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">base_temperature</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">25 °C</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">rubisco_constant_for_co2_at_25</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">404.9 μbar</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">activation_energy_for_co2</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">79.43 kJ mol⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">rubisco_constant_for_o2_at_25</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">278.4 mbar</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">activation_energy_for_o2</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">36.38 kJ mol⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">mesophyll_o2_partial_pressure</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">210 mbar</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">maximum_carboxylation_rate_at_25</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">108.4 μmol m⁻² s⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">activation_energy_for_carboxylation</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">52.1573 kJ mol⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">maximum_electron_transport_rate_at_25</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">169.0 μmol m⁻² s⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">activation_energy_for_electron_transport</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">23.9976 kJ mol⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">electron_transport_temperature_response</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">616.4 J K⁻¹ mol⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">electron_transport_curvature</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">200 kJ mol⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">light_transition_sharpness</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.7</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">triose_phosphate_limitation_at_25</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">16.03 μmol m⁻² s⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">activation_energy_for_Tp</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">47.1 kJ mol⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">dark_respiration_at_25</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">1.08 μmol m⁻² s⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">activation_energy_for_respiration</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">49.39 kJ mol⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">co2_compensation_point_at_25</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">42.75 μbar</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">activation_energy_for_co2_compensation_point</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">37.83 kJ mol⁻¹</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">Root</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">growth_duration</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">10 d</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">longevity</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">50 d</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">Model</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">primordia</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">5</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">partitioning_table</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">&#91;0.0 0.0 … 0.0 0.0; 0.35 0.3 … 0.0 0.1; … ; 0.05 0.0 … 0.0 0.95; 0.0 0.0 … 0.0 0.0&#93;</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">initial_seed_mass</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.275 g</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">initial_planting_density</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">55 m⁻²</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">maintenance_respiration_coefficient</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.012 d⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">synthesis_efficiency</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.8</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">cold_damage_shape_factor</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.9 K⁻¹</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">cold_damage_critical_temperature</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">-15 °C</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">enable_cold_damage</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">true</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">leaf_width</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">1.5 cm</td></tr>
+</table>
+<p>As the parameter list goes quite long, let&#39;s try a parameter set included in the package. It was calibrated for Korean Mountain (KM) cultivar planted and grown in Seattle as described in the <a href="https://doi.org/10.1093/aob/mcz060">paper</a>.</p><pre><code class="language-julia hljs">config = @config Garlic.Examples.AoB.KM_2014_P2_SR0</code></pre><p style="font-family: monospace">Config for 8 systems:</p>
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">Phenology</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">optimal_temperature</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">22.28</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">ceiling_temperature</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">34.23</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">critical_photoperiod</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">12</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">maximum_leaf_initiation_rate</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.1003</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">storage_temperature</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">5</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">maximum_phyllochron_asymptote</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.4421</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">leaves_generic</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">10</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">initial_leaves_at_harvest</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">4</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">storage_days</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">143</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">planting_date</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">ZonedDateTime&#40;2014, 11, 20, tz&quot;America/Los_Angeles&quot;&#41;</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">emergence_date</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">ZonedDateTime&#40;2014, 12, 30, tz&quot;America/Los_Angeles&quot;&#41;</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">scape_removal_date</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">nothing</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">Leaf</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">maximum_elongation_rate</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">4.7</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">minimum_length_of_longest_leaf</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">65.0</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">stay_green</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">1.84</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">Carbon</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">maintenance_respiration_coefficient</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.012</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">synthesis_efficiency</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">0.8</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">partitioning_table</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">&#91;0.0 0.0 … 0.0 0.0; 0.35 0.3 … 0.0 0.1; … ; 0.05 0.0 … 0.0 0.95; 0.0 0.0 … 0.0 0.0&#93;</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">Meta</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">cultivar</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">:KM</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">year</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">2014</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">planting_group</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">2</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">Location</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">latitude</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">47.66</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">longitude</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">122.29</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">altitude</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">20.0</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">Weather</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">CO2</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">390</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">store</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">7454×11 DataFrame…</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">Plant</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">initial_planting_density</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">55</td></tr>
+</table>
+
+<table style="font-family: monospace">
+<tr style="background-color: transparent">
+<td colspan="3" style="text-align: left; padding: 2px; padding-left: 20px; color: rebeccapurple">Calendar</th>
+</tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">init</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">ZonedDateTime&#40;2014, 9, 1, 1, tz&quot;America/Los_Angeles&quot;&#41;</td></tr>
+<tr style="background-color: transparent"><td style="text-align: left; padding: 2px; padding-left: 40px; color: royalblue">last</td><td style="text-align: center; padding: 2px 10px 2px 10px; color: gray">=</td><td style="text-align: left; padding: 2px;">ZonedDateTime&#40;2015, 7, 7, tz&quot;America/Los_Angeles&quot;&#41;</td></tr>
+</table>
+<p>Simulation is run until <code>stop</code> condition is met which corresponds to the number of <em>hours</em> (<code>calendar.count</code>) between starting (<code>calendar.init</code>) and ending date (<code>calendar.last</code>)  as specified in the configuration above. The output of simulation is <code>snap</code>-ped each day, not by every hour, to reduce overhead.</p><pre><code class="language-julia hljs">r = simulate(Garlic.Model; config, stop = &quot;calendar.count&quot;, snap = 1u&quot;d&quot;)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Progress:   0%[&gt;                          ]  ETA: 7:41:25 ( 3.73  s/it)Progress:   5%[=&gt;                         ]  ETA: 0:02:57 (25.11 ms/it)Progress:  11%[===&gt;                       ]  ETA: 0:01:23 (12.56 ms/it)Progress:  17%[====&gt;                      ]  ETA: 0:00:54 ( 8.79 ms/it)Progress:  24%[======&gt;                    ]  ETA: 0:00:40 ( 7.06 ms/it)Progress:  30%[========&gt;                  ]  ETA: 0:00:37 ( 7.10 ms/it)Progress:  36%[=========&gt;                 ]  ETA: 0:00:30 ( 6.27 ms/it)Progress:  42%[===========&gt;               ]  ETA: 0:00:25 ( 5.71 ms/it)Progress:  48%[============&gt;              ]  ETA: 0:00:21 ( 5.31 ms/it)Progress:  54%[==============&gt;            ]  ETA: 0:00:17 ( 4.98 ms/it)Progress:  59%[================&gt;          ]  ETA: 0:00:14 ( 4.71 ms/it)Progress:  65%[=================&gt;         ]  ETA: 0:00:12 ( 4.50 ms/it)Progress:  71%[===================&gt;       ]  ETA: 0:00:09 ( 4.31 ms/it)Progress:  77%[====================&gt;      ]  ETA: 0:00:07 ( 4.16 ms/it)Progress:  83%[======================&gt;    ]  ETA: 0:00:05 ( 4.03 ms/it)Progress:  89%[========================&gt;  ]  ETA: 0:00:03 ( 3.91 ms/it)Progress:  95%[=========================&gt; ]  ETA: 0:00:01 ( 3.81 ms/it)Progress: 100%[===========================] Time: 0:00:27 ( 3.73 ms/it)</code></pre><p>The output data frame can be now used for making some plots. Here is a plot replicating <a href="https://academic.oup.com/view-large/figure/198476944/mcz060f0003.jpg">Fig. 3.D</a> from the paper showing leaf development over time.</p><pre><code class="language-julia hljs">visualize(r, :time, [:leaves_appeared, :leaves_mature, :leaves_dropped]; kind = :line)</code></pre><?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:gadfly="http://www.gadflyjl.org/ns"
+     version="1.2"
+     width="141.42mm" height="100mm" viewBox="0 0 141.42 100"
+     stroke="none"
+     fill="#000000"
+     stroke-width="0.3"
+     font-size="3.88"
+>
+<defs>
+  <marker id="arrow" markerWidth="15" markerHeight="7" refX="5" refY="3.5" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L15,3.5 L0,7 z" stroke="context-stroke" fill="context-stroke"/>
+  </marker>
+</defs>
+<g stroke="#000000" stroke-opacity="0.000" fill="#FFFFFF" id="img-1facc6c3-1">
+  <g transform="translate(70.71,50)">
+    <path d="M-70.71,-50 L70.71,-50 70.71,50 -70.71,50  z" class="primitive"/>
+  </g>
+</g>
+<g class="plotroot xscalable yscalable" id="img-1facc6c3-2">
+  <g font-size="3.53" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" fill="#564A55" stroke="#000000" stroke-opacity="0.000" id="img-1facc6c3-3">
+    <g transform="translate(61.07,93.72)">
+      <g class="primitive">
+        <text text-anchor="middle" dy="0.6em">time</text>
+      </g>
+    </g>
+  </g>
+  <g class="guide xlabels" font-size="2.82" font-family="'PT Sans Caption','Helvetica Neue','Helvetica',sans-serif" fill="#6C606B" id="img-1facc6c3-4">
+    <g transform="translate(21.83,87.04)">
+      <g class="primitive">
+        <text text-anchor="middle" dy="0.6em">Oct</text>
+      </g>
+    </g>
+    <g transform="translate(50.94,87.04)">
+      <g class="primitive">
+        <text text-anchor="middle" dy="0.6em">Jan 2015</text>
+      </g>
+    </g>
+    <g transform="translate(79.41,87.04)">
+      <g class="primitive">
+        <text text-anchor="middle" dy="0.6em">Apr</text>
+      </g>
+    </g>
+    <g transform="translate(108.21,87.04)">
+      <g class="primitive">
+        <text text-anchor="middle" dy="0.6em">Jul</text>
+      </g>
+    </g>
+  </g>
+  <g class="guide colorkey" id="img-1facc6c3-5">
+    <g fill="#4C404B" font-size="2.82" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" id="img-1facc6c3-6">
+      <g transform="translate(116.43,44.12)" id="img-1facc6c3-7">
+        <g class="primitive">
+          <text dy="0.35em">leaves_appeared</text>
+        </g>
+      </g>
+      <g transform="translate(116.43,47.75)" id="img-1facc6c3-8">
+        <g class="primitive">
+          <text dy="0.35em">leaves_mature</text>
+        </g>
+      </g>
+      <g transform="translate(116.43,51.38)" id="img-1facc6c3-9">
+        <g class="primitive">
+          <text dy="0.35em">leaves_dropped</text>
+        </g>
+      </g>
+    </g>
+    <g stroke-width="0.3" id="img-1facc6c3-10">
+      <g stroke="#FFFFFF" stroke-opacity="0.000" fill-opacity="1" fill="#FF6DAE" id="img-1facc6c3-11">
+        <g transform="translate(113.61,51.38)" id="img-1facc6c3-12">
+          <circle cx="0" cy="0" r="0.7" class="primitive"/>
+        </g>
+      </g>
+      <g stroke="#FFFFFF" stroke-opacity="0.000" fill-opacity="1" fill="#D4CA3A" id="img-1facc6c3-13">
+        <g transform="translate(113.61,47.75)" id="img-1facc6c3-14">
+          <circle cx="0" cy="0" r="0.7" class="primitive"/>
+        </g>
+      </g>
+      <g stroke="#FFFFFF" stroke-opacity="0.000" fill-opacity="1" fill="#00BFFF" id="img-1facc6c3-15">
+        <g transform="translate(113.61,44.12)" id="img-1facc6c3-16">
+          <circle cx="0" cy="0" r="0.7" class="primitive"/>
+        </g>
+      </g>
+    </g>
+    <g fill="#362A35" font-size="3.18" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" stroke="#000000" stroke-opacity="0.000" id="img-1facc6c3-17">
+      <g transform="translate(112.8,40.81)" id="img-1facc6c3-18">
+        <g class="primitive">
+          <text dy="-0em"></text>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g clip-path="url(#img-1facc6c3-19)">
+    <g id="img-1facc6c3-20">
+      <g pointer-events="visible" stroke-width="0.3" fill="#000000" fill-opacity="0.000" stroke="#000000" stroke-opacity="0.000" class="guide background" id="img-1facc6c3-21">
+        <g transform="translate(61.07,45.52)" id="img-1facc6c3-22">
+          <path d="M-50.73,-40.52 L50.73,-40.52 50.73,40.52 -50.73,40.52  z" class="primitive"/>
+        </g>
+      </g>
+      <g class="guide ygridlines xfixed" stroke-dasharray="0.5,0.5" stroke-width="0.2" stroke="#D0D0E0" id="img-1facc6c3-23">
+        <g transform="translate(61.07,84.04)" id="img-1facc6c3-24">
+          <path fill="none" d="M-50.73,0 L50.73,0 " class="primitive"/>
+        </g>
+        <g transform="translate(61.07,45.52)" id="img-1facc6c3-25">
+          <path fill="none" d="M-50.73,0 L50.73,0 " class="primitive"/>
+        </g>
+        <g transform="translate(61.07,7)" id="img-1facc6c3-26">
+          <path fill="none" d="M-50.73,0 L50.73,0 " class="primitive"/>
+        </g>
+      </g>
+      <g class="guide xgridlines yfixed" stroke-dasharray="0.5,0.5" stroke-width="0.2" stroke="#D0D0E0" id="img-1facc6c3-27">
+        <g transform="translate(21.83,45.52)" id="img-1facc6c3-28">
+          <path fill="none" d="M0,-40.52 L0,40.52 " class="primitive"/>
+        </g>
+        <g transform="translate(50.94,45.52)" id="img-1facc6c3-29">
+          <path fill="none" d="M0,-40.52 L0,40.52 " class="primitive"/>
+        </g>
+        <g transform="translate(79.41,45.52)" id="img-1facc6c3-30">
+          <path fill="none" d="M0,-40.52 L0,40.52 " class="primitive"/>
+        </g>
+        <g transform="translate(108.21,45.52)" id="img-1facc6c3-31">
+          <path fill="none" d="M0,-40.52 L0,40.52 " class="primitive"/>
+        </g>
+      </g>
+      <g class="plotpanel" id="img-1facc6c3-32">
+        <metadata>
+          <boundingbox value="10.346666666666664mm 5.0mm 101.45468957064284mm 81.04333333333335mm"/>
+          <unitbox value="2014-08-25T17:17:55.434 10.259594167784364 27703449131 milliseconds -10.519188335568728"/>
+        </metadata>
+        <g stroke-width="0.3" fill="#000000" fill-opacity="0.000" class="geometry" id="img-1facc6c3-33">
+          <g class="color_LCHab{Float32}(70.0f0,60.0f0,240.0f0)" stroke-dasharray="none" stroke-opacity="1" stroke="#00BFFF" id="img-1facc6c3-34">
+            <g transform="translate(61.07,49.84)" id="img-1facc6c3-35">
+              <path fill="none" d="M-48.72,34.21 L-48.41,34.21 -48.09,34.21 -47.77,34.21 -47.46,34.21 -47.14,34.21 -46.82,34.21 -46.51,34.21 -46.19,34.21 -45.87,34.21 -45.56,34.21 -45.24,34.21 -44.93,34.21 -44.61,34.21 -44.29,34.21 -43.98,34.21 -43.66,34.21 -43.34,34.21 -43.03,34.21 -42.71,34.21 -42.39,34.21 -42.08,34.21 -41.76,34.21 -41.44,34.21 -41.13,34.21 -40.81,34.21 -40.5,34.21 -40.18,34.21 -39.86,34.21 -39.55,34.21 -39.23,34.21 -38.91,34.21 -38.6,34.21 -38.28,34.21 -37.96,34.21 -37.65,34.21 -37.33,34.21 -37.01,34.21 -36.7,34.21 -36.38,34.21 -36.07,34.21 -35.75,34.21 -35.43,34.21 -35.12,34.21 -34.8,34.21 -34.48,34.21 -34.17,34.21 -33.85,34.21 -33.53,34.21 -33.22,34.21 -32.9,34.21 -32.58,34.21 -32.27,34.21 -31.95,34.21 -31.64,34.21 -31.32,34.21 -31,34.21 -30.69,34.21 -30.37,34.21 -30.05,34.21 -29.74,34.21 -29.42,34.21 -29.1,34.21 -28.8,34.21 -28.48,34.21 -28.17,34.21 -27.85,34.21 -27.54,34.21 -27.22,34.21 -26.9,34.21 -26.59,34.21 -26.27,34.21 -25.95,34.21 -25.64,34.21 -25.32,34.21 -25,34.21 -24.69,34.21 -24.37,34.21 -24.06,34.21 -23.74,34.21 -23.42,34.21 -23.11,34.21 -22.79,34.21 -22.47,34.21 -22.16,34.21 -21.84,34.21 -21.52,34.21 -21.21,34.21 -20.89,34.21 -20.57,34.21 -20.26,34.21 -19.94,34.21 -19.63,34.21 -19.31,34.21 -18.99,34.21 -18.68,34.21 -18.36,34.21 -18.04,34.21 -17.73,34.21 -17.41,34.21 -17.09,34.21 -16.78,34.21 -16.46,34.21 -16.14,34.21 -15.83,34.21 -15.51,34.21 -15.2,34.21 -14.88,34.21 -14.56,34.21 -14.25,34.21 -13.93,34.21 -13.61,34.21 -13.3,34.21 -12.98,34.21 -12.66,34.21 -12.35,34.21 -12.03,34.21 -11.72,34.21 -11.4,34.21 -11.08,34.21 -10.77,26.5 -10.45,26.5 -10.13,26.5 -9.82,26.5 -9.5,26.5 -9.18,26.5 -8.87,26.5 -8.55,26.5 -8.23,26.5 -7.92,26.5 -7.6,26.5 -7.29,26.5 -6.97,26.5 -6.65,26.5 -6.34,26.5 -6.02,26.5 -5.7,26.5 -5.39,26.5 -5.07,18.8 -4.75,18.8 -4.44,18.8 -4.12,18.8 -3.8,18.8 -3.49,18.8 -3.17,18.8 -2.86,18.8 -2.54,18.8 -2.22,18.8 -1.91,11.1 -1.59,11.1 -1.27,11.1 -0.96,11.1 -0.64,11.1 -0.32,11.1 -0.01,11.1 0.31,11.1 0.63,11.1 0.94,11.1 1.26,11.1 1.57,3.39 1.89,3.39 2.21,3.39 2.52,3.39 2.84,3.39 3.16,3.39 3.47,3.39 3.79,-4.31 4.11,-4.31 4.42,-4.31 4.74,-4.31 5.05,-4.31 5.37,-4.31 5.69,-4.31 6,-4.31 6.32,-4.31 6.64,-4.31 6.95,-4.31 7.27,-12.02 7.59,-12.02 7.9,-12.02 8.22,-12.02 8.54,-12.02 8.85,-12.02 9.17,-12.02 9.48,-12.02 9.8,-12.02 10.12,-12.02 10.43,-12.02 10.75,-12.02 11.08,-12.02 11.4,-19.72 11.71,-19.72 12.03,-19.72 12.35,-19.72 12.66,-19.72 12.98,-19.72 13.29,-19.72 13.61,-19.72 13.93,-27.43 14.24,-27.43 14.56,-27.43 14.88,-27.43 15.19,-27.43 15.51,-27.43 15.83,-27.43 16.14,-27.43 16.46,-27.43 16.78,-35.13 17.09,-35.13 17.41,-35.13 17.72,-35.13 18.04,-35.13 18.36,-35.13 18.67,-35.13 18.99,-35.13 19.31,-42.84 19.62,-42.84 19.94,-42.84 20.26,-42.84 20.57,-42.84 20.89,-42.84 21.2,-42.84 21.52,-42.84 21.84,-42.84 22.15,-42.84 22.47,-42.84 22.79,-42.84 23.1,-42.84 23.42,-42.84 23.74,-42.84 24.05,-42.84 24.37,-42.84 24.69,-42.84 25,-42.84 25.32,-42.84 25.63,-42.84 25.95,-42.84 26.27,-42.84 26.58,-42.84 26.9,-42.84 27.22,-42.84 27.53,-42.84 27.85,-42.84 28.17,-42.84 28.48,-42.84 28.8,-42.84 29.12,-42.84 29.43,-42.84 29.75,-42.84 30.06,-42.84 30.38,-42.84 30.7,-42.84 31.01,-42.84 31.33,-42.84 31.65,-42.84 31.96,-42.84 32.28,-42.84 32.6,-42.84 32.91,-42.84 33.23,-42.84 33.54,-42.84 33.86,-42.84 34.18,-42.84 34.49,-42.84 34.81,-42.84 35.13,-42.84 35.44,-42.84 35.76,-42.84 36.08,-42.84 36.39,-42.84 36.71,-42.84 37.03,-42.84 37.34,-42.84 37.66,-42.84 37.97,-42.84 38.29,-42.84 38.61,-42.84 38.92,-42.84 39.24,-42.84 39.56,-42.84 39.87,-42.84 40.19,-42.84 40.51,-42.84 40.82,-42.84 41.14,-42.84 41.46,-42.84 41.77,-42.84 42.09,-42.84 42.4,-42.84 42.72,-42.84 43.04,-42.84 43.35,-42.84 43.67,-42.84 43.99,-42.84 44.3,-42.84 44.62,-42.84 44.94,-42.84 45.25,-42.84 45.57,-42.84 45.89,-42.84 46.2,-42.84 46.52,-42.84 46.83,-42.84 47.15,-42.84 47.47,-42.84 47.78,-42.84 48.1,-42.84 48.42,-42.84 48.73,-42.84 " class="primitive"/>
+            </g>
+          </g>
+        </g>
+        <g stroke-width="0.3" fill="#000000" fill-opacity="0.000" class="geometry" id="img-1facc6c3-36">
+          <g class="color_LCHab{Float32}(80.0f0,70.000015f0,100.43479f0)" stroke-dasharray="none" stroke-opacity="1" stroke="#D4CA3A" id="img-1facc6c3-37">
+            <g transform="translate(61.07,58.31)" id="img-1facc6c3-38">
+              <path fill="none" d="M-48.72,25.73 L-48.41,25.73 -48.09,25.73 -47.77,25.73 -47.46,25.73 -47.14,25.73 -46.82,25.73 -46.51,25.73 -46.19,25.73 -45.87,25.73 -45.56,25.73 -45.24,25.73 -44.93,25.73 -44.61,25.73 -44.29,25.73 -43.98,25.73 -43.66,25.73 -43.34,25.73 -43.03,25.73 -42.71,25.73 -42.39,25.73 -42.08,25.73 -41.76,25.73 -41.44,25.73 -41.13,25.73 -40.81,25.73 -40.5,25.73 -40.18,25.73 -39.86,25.73 -39.55,25.73 -39.23,25.73 -38.91,25.73 -38.6,25.73 -38.28,25.73 -37.96,25.73 -37.65,25.73 -37.33,25.73 -37.01,25.73 -36.7,25.73 -36.38,25.73 -36.07,25.73 -35.75,25.73 -35.43,25.73 -35.12,25.73 -34.8,25.73 -34.48,25.73 -34.17,25.73 -33.85,25.73 -33.53,25.73 -33.22,25.73 -32.9,25.73 -32.58,25.73 -32.27,25.73 -31.95,25.73 -31.64,25.73 -31.32,25.73 -31,25.73 -30.69,25.73 -30.37,25.73 -30.05,25.73 -29.74,25.73 -29.42,25.73 -29.1,25.73 -28.8,25.73 -28.48,25.73 -28.17,25.73 -27.85,25.73 -27.54,25.73 -27.22,25.73 -26.9,25.73 -26.59,25.73 -26.27,25.73 -25.95,25.73 -25.64,25.73 -25.32,25.73 -25,25.73 -24.69,25.73 -24.37,25.73 -24.06,25.73 -23.74,25.73 -23.42,25.73 -23.11,25.73 -22.79,25.73 -22.47,25.73 -22.16,25.73 -21.84,25.73 -21.52,25.73 -21.21,25.73 -20.89,25.73 -20.57,25.73 -20.26,25.73 -19.94,25.73 -19.63,25.73 -19.31,25.73 -18.99,25.73 -18.68,25.73 -18.36,25.73 -18.04,25.73 -17.73,25.73 -17.41,25.73 -17.09,25.73 -16.78,25.73 -16.46,25.73 -16.14,25.73 -15.83,25.73 -15.51,25.73 -15.2,25.73 -14.88,25.73 -14.56,25.73 -14.25,25.73 -13.93,25.73 -13.61,25.73 -13.3,25.73 -12.98,25.73 -12.66,25.73 -12.35,25.73 -12.03,25.73 -11.72,25.73 -11.4,25.73 -11.08,25.73 -10.77,25.73 -10.45,25.73 -10.13,25.73 -9.82,25.73 -9.5,25.73 -9.18,25.73 -8.87,25.73 -8.55,25.73 -8.23,25.73 -7.92,25.73 -7.6,25.73 -7.29,25.73 -6.97,25.73 -6.65,25.73 -6.34,25.73 -6.02,25.73 -5.7,25.73 -5.39,25.73 -5.07,18.03 -4.75,18.03 -4.44,18.03 -4.12,18.03 -3.8,18.03 -3.49,18.03 -3.17,18.03 -2.86,18.03 -2.54,18.03 -2.22,18.03 -1.91,18.03 -1.59,18.03 -1.27,18.03 -0.96,18.03 -0.64,18.03 -0.32,18.03 -0.01,18.03 0.31,18.03 0.63,18.03 0.94,18.03 1.26,10.32 1.57,10.32 1.89,10.32 2.21,10.32 2.52,10.32 2.84,10.32 3.16,10.32 3.47,10.32 3.79,10.32 4.11,10.32 4.42,10.32 4.74,10.32 5.05,10.32 5.37,10.32 5.69,10.32 6,10.32 6.32,2.62 6.64,2.62 6.95,2.62 7.27,2.62 7.59,2.62 7.9,2.62 8.22,2.62 8.54,2.62 8.85,2.62 9.17,2.62 9.48,2.62 9.8,2.62 10.12,2.62 10.43,2.62 10.75,2.62 11.08,2.62 11.4,2.62 11.71,2.62 12.03,2.62 12.35,-5.09 12.66,-5.09 12.98,-5.09 13.29,-5.09 13.61,-5.09 13.93,-5.09 14.24,-5.09 14.56,-5.09 14.88,-5.09 15.19,-5.09 15.51,-5.09 15.83,-5.09 16.14,-5.09 16.46,-5.09 16.78,-12.79 17.09,-12.79 17.41,-12.79 17.72,-12.79 18.04,-12.79 18.36,-12.79 18.67,-12.79 18.99,-12.79 19.31,-12.79 19.62,-12.79 19.94,-12.79 20.26,-20.5 20.57,-20.5 20.89,-20.5 21.2,-20.5 21.52,-20.5 21.84,-20.5 22.15,-20.5 22.47,-20.5 22.79,-20.5 23.1,-20.5 23.42,-20.5 23.74,-20.5 24.05,-28.2 24.37,-28.2 24.69,-28.2 25,-28.2 25.32,-28.2 25.63,-28.2 25.95,-28.2 26.27,-28.2 26.58,-28.2 26.9,-28.2 27.22,-35.9 27.53,-35.9 27.85,-35.9 28.17,-35.9 28.48,-35.9 28.8,-35.9 29.12,-35.9 29.43,-43.61 29.75,-43.61 30.06,-43.61 30.38,-43.61 30.7,-43.61 31.01,-43.61 31.33,-51.31 31.65,-51.31 31.96,-51.31 32.28,-51.31 32.6,-51.31 32.91,-51.31 33.23,-51.31 33.54,-51.31 33.86,-51.31 34.18,-51.31 34.49,-51.31 34.81,-51.31 35.13,-51.31 35.44,-51.31 35.76,-51.31 36.08,-51.31 36.39,-51.31 36.71,-51.31 37.03,-51.31 37.34,-51.31 37.66,-51.31 37.97,-51.31 38.29,-51.31 38.61,-51.31 38.92,-51.31 39.24,-51.31 39.56,-51.31 39.87,-51.31 40.19,-51.31 40.51,-51.31 40.82,-51.31 41.14,-51.31 41.46,-51.31 41.77,-51.31 42.09,-51.31 42.4,-51.31 42.72,-51.31 43.04,-51.31 43.35,-51.31 43.67,-51.31 43.99,-51.31 44.3,-51.31 44.62,-51.31 44.94,-51.31 45.25,-51.31 45.57,-51.31 45.89,-51.31 46.2,-51.31 46.52,-51.31 46.83,-51.31 47.15,-51.31 47.47,-51.31 47.78,-51.31 48.1,-51.31 48.42,-51.31 48.73,-51.31 " class="primitive"/>
+            </g>
+          </g>
+        </g>
+        <g stroke-width="0.3" fill="#000000" fill-opacity="0.000" class="geometry" id="img-1facc6c3-39">
+          <g class="color_LCHab{Float32}(65.89944f0,62.21457f0,353.99814f0)" stroke-dasharray="none" stroke-opacity="1" stroke="#FF6DAE" id="img-1facc6c3-40">
+            <g transform="translate(61.07,70.48)" id="img-1facc6c3-41">
+              <path fill="none" d="M-48.72,13.56 L-48.41,13.56 -48.09,13.56 -47.77,13.56 -47.46,13.56 -47.14,13.56 -46.82,13.56 -46.51,13.56 -46.19,13.56 -45.87,13.56 -45.56,13.56 -45.24,13.56 -44.93,13.56 -44.61,13.56 -44.29,13.56 -43.98,13.56 -43.66,13.56 -43.34,13.56 -43.03,13.56 -42.71,13.56 -42.39,13.56 -42.08,13.56 -41.76,13.56 -41.44,13.56 -41.13,13.56 -40.81,13.56 -40.5,13.56 -40.18,13.56 -39.86,13.56 -39.55,13.56 -39.23,13.56 -38.91,13.56 -38.6,13.56 -38.28,13.56 -37.96,13.56 -37.65,13.56 -37.33,13.56 -37.01,13.56 -36.7,13.56 -36.38,13.56 -36.07,13.56 -35.75,13.56 -35.43,13.56 -35.12,13.56 -34.8,13.56 -34.48,13.56 -34.17,13.56 -33.85,13.56 -33.53,13.56 -33.22,13.56 -32.9,13.56 -32.58,13.56 -32.27,13.56 -31.95,13.56 -31.64,13.56 -31.32,13.56 -31,13.56 -30.69,13.56 -30.37,13.56 -30.05,13.56 -29.74,13.56 -29.42,13.56 -29.1,13.56 -28.8,13.56 -28.48,13.56 -28.17,13.56 -27.85,13.56 -27.54,13.56 -27.22,13.56 -26.9,13.56 -26.59,13.56 -26.27,13.56 -25.95,13.56 -25.64,13.56 -25.32,13.56 -25,13.56 -24.69,13.56 -24.37,13.56 -24.06,13.56 -23.74,13.56 -23.42,13.56 -23.11,13.56 -22.79,13.56 -22.47,13.56 -22.16,13.56 -21.84,13.56 -21.52,13.56 -21.21,13.56 -20.89,13.56 -20.57,13.56 -20.26,13.56 -19.94,13.56 -19.63,13.56 -19.31,13.56 -18.99,13.56 -18.68,13.56 -18.36,13.56 -18.04,13.56 -17.73,13.56 -17.41,13.56 -17.09,13.56 -16.78,13.56 -16.46,13.56 -16.14,13.56 -15.83,13.56 -15.51,13.56 -15.2,13.56 -14.88,13.56 -14.56,13.56 -14.25,13.56 -13.93,13.56 -13.61,13.56 -13.3,13.56 -12.98,13.56 -12.66,13.56 -12.35,13.56 -12.03,13.56 -11.72,13.56 -11.4,13.56 -11.08,13.56 -10.77,13.56 -10.45,13.56 -10.13,13.56 -9.82,13.56 -9.5,13.56 -9.18,13.56 -8.87,13.56 -8.55,13.56 -8.23,13.56 -7.92,13.56 -7.6,13.56 -7.29,13.56 -6.97,13.56 -6.65,13.56 -6.34,13.56 -6.02,13.56 -5.7,13.56 -5.39,13.56 -5.07,13.56 -4.75,13.56 -4.44,13.56 -4.12,13.56 -3.8,13.56 -3.49,13.56 -3.17,13.56 -2.86,13.56 -2.54,13.56 -2.22,13.56 -1.91,13.56 -1.59,13.56 -1.27,13.56 -0.96,5.86 -0.64,5.86 -0.32,5.86 -0.01,5.86 0.31,5.86 0.63,5.86 0.94,5.86 1.26,5.86 1.57,5.86 1.89,5.86 2.21,5.86 2.52,5.86 2.84,5.86 3.16,5.86 3.47,5.86 3.79,5.86 4.11,5.86 4.42,5.86 4.74,5.86 5.05,5.86 5.37,5.86 5.69,5.86 6,5.86 6.32,5.86 6.64,5.86 6.95,5.86 7.27,5.86 7.59,5.86 7.9,5.86 8.22,5.86 8.54,5.86 8.85,5.86 9.17,5.86 9.48,5.86 9.8,5.86 10.12,5.86 10.43,5.86 10.75,5.86 11.08,5.86 11.4,5.86 11.71,-1.85 12.03,-1.85 12.35,-1.85 12.66,-1.85 12.98,-1.85 13.29,-1.85 13.61,-1.85 13.93,-1.85 14.24,-1.85 14.56,-1.85 14.88,-1.85 15.19,-1.85 15.51,-1.85 15.83,-1.85 16.14,-1.85 16.46,-1.85 16.78,-1.85 17.09,-1.85 17.41,-1.85 17.72,-1.85 18.04,-1.85 18.36,-1.85 18.67,-1.85 18.99,-1.85 19.31,-1.85 19.62,-1.85 19.94,-1.85 20.26,-1.85 20.57,-1.85 20.89,-1.85 21.2,-1.85 21.52,-1.85 21.84,-9.55 22.15,-9.55 22.47,-9.55 22.79,-9.55 23.1,-9.55 23.42,-9.55 23.74,-9.55 24.05,-9.55 24.37,-9.55 24.69,-9.55 25,-9.55 25.32,-9.55 25.63,-9.55 25.95,-9.55 26.27,-9.55 26.58,-9.55 26.9,-9.55 27.22,-9.55 27.53,-9.55 27.85,-9.55 28.17,-9.55 28.48,-9.55 28.8,-9.55 29.12,-9.55 29.43,-9.55 29.75,-9.55 30.06,-9.55 30.38,-17.25 30.7,-17.25 31.01,-17.25 31.33,-17.25 31.65,-17.25 31.96,-17.25 32.28,-17.25 32.6,-17.25 32.91,-17.25 33.23,-17.25 33.54,-17.25 33.86,-17.25 34.18,-17.25 34.49,-17.25 34.81,-17.25 35.13,-17.25 35.44,-17.25 35.76,-17.25 36.08,-17.25 36.39,-24.96 36.71,-24.96 37.03,-24.96 37.34,-24.96 37.66,-24.96 37.97,-24.96 38.29,-24.96 38.61,-24.96 38.92,-24.96 39.24,-24.96 39.56,-24.96 39.87,-24.96 40.19,-32.66 40.51,-32.66 40.82,-32.66 41.14,-32.66 41.46,-32.66 41.77,-32.66 42.09,-32.66 42.4,-32.66 42.72,-32.66 43.04,-32.66 43.35,-40.37 43.67,-40.37 43.99,-40.37 44.3,-40.37 44.62,-40.37 44.94,-48.07 45.25,-63.48 45.57,-63.48 45.89,-63.48 46.2,-63.48 46.52,-63.48 46.83,-63.48 47.15,-63.48 47.47,-63.48 47.78,-63.48 48.1,-63.48 48.42,-63.48 48.73,-63.48 " class="primitive"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g class="guide ylabels" font-size="2.82" font-family="'PT Sans Caption','Helvetica Neue','Helvetica',sans-serif" fill="#6C606B" id="img-1facc6c3-42">
+    <g transform="translate(9.35,84.04)" id="img-1facc6c3-43">
+      <g class="primitive">
+        <text text-anchor="end" dy="0.35em">0</text>
+      </g>
+    </g>
+    <g transform="translate(9.35,45.52)" id="img-1facc6c3-44">
+      <g class="primitive">
+        <text text-anchor="end" dy="0.35em">5</text>
+      </g>
+    </g>
+    <g transform="translate(9.35,7)" id="img-1facc6c3-45">
+      <g class="primitive">
+        <text text-anchor="end" dy="0.35em">10</text>
+      </g>
+    </g>
+  </g>
+</g>
+<defs>
+  <clipPath id="img-1facc6c3-19">
+    <path d="M10.35,5 L111.8,5 111.8,86.04 10.35,86.04 " />
+  </clipPath>
+</defs>
+</svg>
+<p>Another plot replicating <a href="https://academic.oup.com/view-large/figure/198476946/mcz060f0004.jpg">Fig. 4.D</a> from the paper showing the area of green leaf taking account of leaf aging.</p><pre><code class="language-julia hljs">visualize(r, :time, :green_leaf_area; kind = :line)</code></pre><?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:gadfly="http://www.gadflyjl.org/ns"
+     version="1.2"
+     width="141.42mm" height="100mm" viewBox="0 0 141.42 100"
+     stroke="none"
+     fill="#000000"
+     stroke-width="0.3"
+     font-size="3.88"
+>
+<defs>
+  <marker id="arrow" markerWidth="15" markerHeight="7" refX="5" refY="3.5" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L15,3.5 L0,7 z" stroke="context-stroke" fill="context-stroke"/>
+  </marker>
+</defs>
+<g stroke="#000000" stroke-opacity="0.000" fill="#FFFFFF" id="img-04887782-1">
+  <g transform="translate(70.71,50)">
+    <path d="M-70.71,-50 L70.71,-50 70.71,50 -70.71,50  z" class="primitive"/>
+  </g>
+</g>
+<g class="plotroot xscalable yscalable" id="img-04887782-2">
+  <g font-size="3.53" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" fill="#564A55" stroke="#000000" stroke-opacity="0.000" id="img-04887782-3">
+    <g transform="translate(66.08,93.72)">
+      <g class="primitive">
+        <text text-anchor="middle" dy="0.6em">time</text>
+      </g>
+    </g>
+  </g>
+  <g class="guide xlabels" font-size="2.82" font-family="'PT Sans Caption','Helvetica Neue','Helvetica',sans-serif" fill="#6C606B" id="img-04887782-4">
+    <g transform="translate(30.01,87.04)">
+      <g class="primitive">
+        <text text-anchor="middle" dy="0.6em">Oct</text>
+      </g>
+    </g>
+    <g transform="translate(56.76,87.04)">
+      <g class="primitive">
+        <text text-anchor="middle" dy="0.6em">Jan 2015</text>
+      </g>
+    </g>
+    <g transform="translate(82.93,87.04)">
+      <g class="primitive">
+        <text text-anchor="middle" dy="0.6em">Apr</text>
+      </g>
+    </g>
+    <g transform="translate(109.39,87.04)">
+      <g class="primitive">
+        <text text-anchor="middle" dy="0.6em">Jul</text>
+      </g>
+    </g>
+  </g>
+  <g class="guide colorkey" id="img-04887782-5">
+    <g fill="#4C404B" font-size="2.82" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" id="img-04887782-6">
+      <g transform="translate(117.48,47.75)" id="img-04887782-7">
+        <g class="primitive">
+          <text dy="0.35em">green_leaf_area</text>
+        </g>
+      </g>
+    </g>
+    <g stroke-width="0.3" id="img-04887782-8">
+      <g stroke="#FFFFFF" stroke-opacity="0.000" fill-opacity="1" fill="#00BFFF" id="img-04887782-9">
+        <g transform="translate(114.67,47.75)" id="img-04887782-10">
+          <circle cx="0" cy="0" r="0.7" class="primitive"/>
+        </g>
+      </g>
+    </g>
+    <g fill="#362A35" font-size="3.18" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" stroke="#000000" stroke-opacity="0.000" id="img-04887782-11">
+      <g transform="translate(113.85,44.44)" id="img-04887782-12">
+        <g class="primitive">
+          <text dy="-0em"></text>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g clip-path="url(#img-04887782-13)">
+    <g id="img-04887782-14">
+      <g pointer-events="visible" stroke-width="0.3" fill="#000000" fill-opacity="0.000" stroke="#000000" stroke-opacity="0.000" class="guide background" id="img-04887782-15">
+        <g transform="translate(66.08,45.52)" id="img-04887782-16">
+          <path d="M-46.78,-40.52 L46.78,-40.52 46.78,40.52 -46.78,40.52  z" class="primitive"/>
+        </g>
+      </g>
+      <g class="guide ygridlines xfixed" stroke-dasharray="0.5,0.5" stroke-width="0.2" stroke="#D0D0E0" id="img-04887782-17">
+        <g transform="translate(66.08,84.04)" id="img-04887782-18">
+          <path fill="none" d="M-46.78,0 L46.78,0 " class="primitive"/>
+        </g>
+        <g transform="translate(66.08,67.96)" id="img-04887782-19">
+          <path fill="none" d="M-46.78,0 L46.78,0 " class="primitive"/>
+        </g>
+        <g transform="translate(66.08,51.87)" id="img-04887782-20">
+          <path fill="none" d="M-46.78,0 L46.78,0 " class="primitive"/>
+        </g>
+        <g transform="translate(66.08,35.79)" id="img-04887782-21">
+          <path fill="none" d="M-46.78,0 L46.78,0 " class="primitive"/>
+        </g>
+        <g transform="translate(66.08,19.71)" id="img-04887782-22">
+          <path fill="none" d="M-46.78,0 L46.78,0 " class="primitive"/>
+        </g>
+      </g>
+      <g class="guide xgridlines yfixed" stroke-dasharray="0.5,0.5" stroke-width="0.2" stroke="#D0D0E0" id="img-04887782-23">
+        <g transform="translate(30.01,45.52)" id="img-04887782-24">
+          <path fill="none" d="M0,-40.52 L0,40.52 " class="primitive"/>
+        </g>
+        <g transform="translate(56.76,45.52)" id="img-04887782-25">
+          <path fill="none" d="M0,-40.52 L0,40.52 " class="primitive"/>
+        </g>
+        <g transform="translate(82.93,45.52)" id="img-04887782-26">
+          <path fill="none" d="M0,-40.52 L0,40.52 " class="primitive"/>
+        </g>
+        <g transform="translate(109.39,45.52)" id="img-04887782-27">
+          <path fill="none" d="M0,-40.52 L0,40.52 " class="primitive"/>
+        </g>
+      </g>
+      <g class="plotpanel" id="img-04887782-28">
+        <metadata>
+          <boundingbox value="19.303333333333327mm 5.0mm 93.55135623730949mm 81.04333333333332mm"/>
+          <unitbox value="2014-08-25T03:54:37.343 491.434560636871 27799845315 milliseconds -503.86912127374205"/>
+        </metadata>
+        <g stroke-width="0.3" fill="#000000" fill-opacity="0.000" class="geometry" id="img-04887782-29">
+          <g class="color_LCHab{Float32}(70.0f0,60.0f0,240.0f0)" stroke-dasharray="none" stroke-opacity="1" stroke="#00BFFF" id="img-04887782-30">
+            <g transform="translate(66.07,64.32)" id="img-04887782-31">
+              <path fill="none" d="M-44.77,19.72 L-44.48,19.72 -44.19,19.72 -43.9,19.72 -43.61,19.72 -43.32,19.72 -43.03,19.72 -42.74,19.72 -42.44,19.72 -42.15,19.72 -41.86,19.72 -41.57,19.72 -41.28,19.72 -40.99,19.72 -40.7,19.72 -40.41,19.72 -40.12,19.72 -39.83,19.72 -39.54,19.72 -39.25,19.72 -38.96,19.72 -38.66,19.72 -38.37,19.72 -38.08,19.72 -37.79,19.72 -37.5,19.72 -37.21,19.72 -36.92,19.72 -36.63,19.72 -36.34,19.72 -36.05,19.72 -35.76,19.72 -35.47,19.72 -35.18,19.72 -34.89,19.72 -34.59,19.72 -34.3,19.72 -34.01,19.72 -33.72,19.72 -33.43,19.72 -33.14,19.72 -32.85,19.72 -32.56,19.72 -32.27,19.72 -31.98,19.72 -31.69,19.72 -31.4,19.72 -31.11,19.72 -30.81,19.72 -30.52,19.72 -30.23,19.72 -29.94,19.72 -29.65,19.72 -29.36,19.72 -29.07,19.72 -28.78,19.72 -28.49,19.72 -28.2,19.72 -27.91,19.72 -27.62,19.72 -27.33,19.72 -27.03,19.72 -26.74,19.72 -26.47,19.72 -26.17,19.72 -25.88,19.72 -25.59,19.72 -25.3,19.72 -25.01,19.72 -24.72,19.72 -24.43,19.72 -24.14,19.72 -23.85,19.72 -23.56,19.72 -23.27,19.72 -22.98,19.72 -22.69,19.72 -22.4,19.72 -22.1,19.72 -21.81,19.72 -21.52,19.72 -21.23,19.72 -20.94,19.72 -20.65,19.72 -20.36,19.72 -20.07,19.72 -19.78,19.72 -19.49,19.72 -19.2,19.72 -18.91,19.72 -18.62,19.72 -18.32,19.72 -18.03,19.72 -17.74,19.72 -17.45,19.72 -17.16,19.72 -16.87,19.72 -16.58,19.72 -16.29,19.72 -16,19.72 -15.71,19.72 -15.42,19.72 -15.13,19.72 -14.84,19.72 -14.54,19.72 -14.25,19.72 -13.96,19.72 -13.67,19.72 -13.38,19.72 -13.09,19.72 -12.8,19.72 -12.51,19.72 -12.22,19.72 -11.93,19.72 -11.64,19.72 -11.35,19.72 -11.06,19.72 -10.76,19.72 -10.47,19.72 -10.18,19.72 -9.89,19.72 -9.6,19.62 -9.31,19.62 -9.02,19.62 -8.73,19.61 -8.44,19.59 -8.15,19.53 -7.86,19.23 -7.57,18.95 -7.28,18.76 -6.99,18.63 -6.69,18.52 -6.4,18.33 -6.11,18.11 -5.82,17.97 -5.53,17.91 -5.24,17.9 -4.95,17.88 -4.66,17.77 -4.37,17.75 -4.08,17.63 -3.79,17.51 -3.5,17.42 -3.21,17.36 -2.91,17.2 -2.62,16.9 -2.33,16.8 -2.04,16.73 -1.75,16.58 -1.46,16.5 -1.17,16.44 -0.88,16.2 -0.59,16.06 -0.3,15.89 -0.01,15.59 0.28,15.2 0.57,14.86 0.87,14.61 1.16,14.24 1.45,13.69 1.74,13.21 2.03,12.63 2.32,12.03 2.61,11.36 2.9,10.87 3.19,10.08 3.48,9.22 3.77,8.44 4.06,8.01 4.35,7.49 4.64,6.9 4.94,6.32 5.23,5.72 5.52,5.1 5.81,4.63 6.1,4.33 6.39,3.98 6.68,3.63 6.97,3.11 7.26,2.79 7.55,2.44 7.84,2.11 8.13,1.94 8.42,1.63 8.72,1.51 9.01,1.42 9.3,1.15 9.59,0.81 9.88,0.38 10.18,-0.1 10.47,-0.6 10.76,-1.36 11.05,-2.51 11.34,-3.92 11.63,-5.14 11.93,-6.5 12.22,-7.32 12.51,-8.24 12.8,-9.25 13.09,-10.52 13.38,-11.81 13.67,-13.17 13.96,-14.63 14.25,-15.57 14.54,-16.43 14.83,-17.39 15.12,-18.65 15.41,-20.52 15.71,-21.79 16,-23.01 16.29,-24.3 16.58,-25.85 16.87,-26.65 17.16,-27.33 17.45,-28.12 17.74,-28.92 18.03,-29.63 18.32,-30.39 18.61,-31.26 18.9,-32.14 19.19,-33.24 19.49,-34.42 19.78,-35.51 20.07,-36.49 20.36,-37.82 20.65,-38.78 20.94,-39.6 21.23,-40.78 21.52,-42.21 21.81,-43.9 22.1,-45.53 22.39,-47.23 22.68,-48.94 22.97,-49.97 23.27,-50.76 23.56,-51.45 23.85,-52.12 24.14,-52.72 24.43,-53.35 24.72,-54.28 25.01,-54.95 25.3,-55.53 25.59,-56.1 25.88,-56.6 26.17,-56.94 26.46,-57.14 26.75,-57.24 27.04,-57.21 27.34,-57.13 27.63,-57 27.92,-57 28.21,-57.21 28.5,-56.75 28.79,-56.26 29.08,-55.74 29.37,-55.27 29.66,-54.75 29.95,-54.2 30.24,-53.66 30.53,-53.08 30.82,-52.36 31.12,-51.68 31.41,-51.01 31.7,-50.2 31.99,-49.62 32.28,-48.78 32.57,-47.61 32.86,-46.49 33.15,-45.16 33.44,-44.28 33.73,-43.4 34.02,-42.51 34.31,-41.83 34.6,-41.1 34.9,-40.51 35.19,-39.91 35.48,-38.77 35.77,-37.38 36.06,-35.7 36.35,-33.78 36.64,-30.48 36.93,-25.7 37.22,-21.78 37.51,-18.37 37.8,-15.28 38.09,-12.6 38.38,-9.67 38.67,-6.16 38.97,-2.18 39.26,0.68 39.55,3.78 39.84,6.89 40.13,9.15 40.42,11.49 40.71,13.99 41,16.41 41.29,18.93 41.58,19.72 41.87,19.72 42.16,19.72 42.45,19.72 42.75,19.72 43.04,19.72 43.33,19.72 43.62,19.72 43.91,19.72 44.2,19.72 44.49,19.72 44.78,19.72 " class="primitive"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g class="guide ylabels" font-size="2.82" font-family="'PT Sans Caption','Helvetica Neue','Helvetica',sans-serif" fill="#6C606B" id="img-04887782-32">
+    <g transform="translate(18.3,84.04)" id="img-04887782-33">
+      <g class="primitive">
+        <text text-anchor="end" dy="0.35em">0</text>
+      </g>
+    </g>
+    <g transform="translate(18.3,67.96)" id="img-04887782-34">
+      <g class="primitive">
+        <text text-anchor="end" dy="0.35em">100</text>
+      </g>
+    </g>
+    <g transform="translate(18.3,51.87)" id="img-04887782-35">
+      <g class="primitive">
+        <text text-anchor="end" dy="0.35em">200</text>
+      </g>
+    </g>
+    <g transform="translate(18.3,35.79)" id="img-04887782-36">
+      <g class="primitive">
+        <text text-anchor="end" dy="0.35em">300</text>
+      </g>
+    </g>
+    <g transform="translate(18.3,19.71)" id="img-04887782-37">
+      <g class="primitive">
+        <text text-anchor="end" dy="0.35em">400</text>
+      </g>
+    </g>
+  </g>
+  <g font-size="3.53" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" fill="#564A55" stroke="#000000" stroke-opacity="0.000" id="img-04887782-38">
+    <g transform="translate(8.64,43.52)" id="img-04887782-39">
+      <g class="primitive">
+        <text text-anchor="middle" dy="0.35em" transform="rotate(-90,0, 2)"> (cm²)</text>
+      </g>
+    </g>
+  </g>
+</g>
+<defs>
+  <clipPath id="img-04887782-13">
+    <path d="M19.3,5 L112.85,5 112.85,86.04 19.3,86.04 " />
+  </clipPath>
+</defs>
+</svg>
+<p>Similarly, dry biomass of organ types per plant can be visualized.</p><pre><code class="language-julia hljs">visualize(r, :time, [:leaf_mass, :bulb_mass, :total_mass]; kind = :line)</code></pre><?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:gadfly="http://www.gadflyjl.org/ns"
+     version="1.2"
+     width="141.42mm" height="100mm" viewBox="0 0 141.42 100"
+     stroke="none"
+     fill="#000000"
+     stroke-width="0.3"
+     font-size="3.88"
+>
+<defs>
+  <marker id="arrow" markerWidth="15" markerHeight="7" refX="5" refY="3.5" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L15,3.5 L0,7 z" stroke="context-stroke" fill="context-stroke"/>
+  </marker>
+</defs>
+<g stroke="#000000" stroke-opacity="0.000" fill="#FFFFFF" id="img-9df4eda5-1">
+  <g transform="translate(70.71,50)">
+    <path d="M-70.71,-50 L70.71,-50 70.71,50 -70.71,50  z" class="primitive"/>
+  </g>
+</g>
+<g class="plotroot xscalable yscalable" id="img-9df4eda5-2">
+  <g font-size="3.53" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" fill="#564A55" stroke="#000000" stroke-opacity="0.000" id="img-9df4eda5-3">
+    <g transform="translate(68.27,93.72)">
+      <g class="primitive">
+        <text text-anchor="middle" dy="0.6em">time</text>
+      </g>
+    </g>
+  </g>
+  <g class="guide xlabels" font-size="2.82" font-family="'PT Sans Caption','Helvetica Neue','Helvetica',sans-serif" fill="#6C606B" id="img-9df4eda5-4">
+    <g transform="translate(29.09,87.04)">
+      <g class="primitive">
+        <text text-anchor="middle" dy="0.6em">Oct</text>
+      </g>
+    </g>
+    <g transform="translate(58.15,87.04)">
+      <g class="primitive">
+        <text text-anchor="middle" dy="0.6em">Jan 2015</text>
+      </g>
+    </g>
+    <g transform="translate(86.58,87.04)">
+      <g class="primitive">
+        <text text-anchor="middle" dy="0.6em">Apr</text>
+      </g>
+    </g>
+    <g transform="translate(115.32,87.04)">
+      <g class="primitive">
+        <text text-anchor="middle" dy="0.6em">Jul</text>
+      </g>
+    </g>
+  </g>
+  <g class="guide colorkey" id="img-9df4eda5-5">
+    <g fill="#4C404B" font-size="2.82" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" id="img-9df4eda5-6">
+      <g transform="translate(123.54,44.12)" id="img-9df4eda5-7">
+        <g class="primitive">
+          <text dy="0.35em">leaf_mass</text>
+        </g>
+      </g>
+      <g transform="translate(123.54,47.75)" id="img-9df4eda5-8">
+        <g class="primitive">
+          <text dy="0.35em">bulb_mass</text>
+        </g>
+      </g>
+      <g transform="translate(123.54,51.38)" id="img-9df4eda5-9">
+        <g class="primitive">
+          <text dy="0.35em">total_mass</text>
+        </g>
+      </g>
+    </g>
+    <g stroke-width="0.3" id="img-9df4eda5-10">
+      <g stroke="#FFFFFF" stroke-opacity="0.000" fill-opacity="1" fill="#FF6DAE" id="img-9df4eda5-11">
+        <g transform="translate(120.73,51.38)" id="img-9df4eda5-12">
+          <circle cx="0" cy="0" r="0.7" class="primitive"/>
+        </g>
+      </g>
+      <g stroke="#FFFFFF" stroke-opacity="0.000" fill-opacity="1" fill="#D4CA3A" id="img-9df4eda5-13">
+        <g transform="translate(120.73,47.75)" id="img-9df4eda5-14">
+          <circle cx="0" cy="0" r="0.7" class="primitive"/>
+        </g>
+      </g>
+      <g stroke="#FFFFFF" stroke-opacity="0.000" fill-opacity="1" fill="#00BFFF" id="img-9df4eda5-15">
+        <g transform="translate(120.73,44.12)" id="img-9df4eda5-16">
+          <circle cx="0" cy="0" r="0.7" class="primitive"/>
+        </g>
+      </g>
+    </g>
+    <g fill="#362A35" font-size="3.18" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" stroke="#000000" stroke-opacity="0.000" id="img-9df4eda5-17">
+      <g transform="translate(119.91,40.81)" id="img-9df4eda5-18">
+        <g class="primitive">
+          <text dy="-0em"></text>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g clip-path="url(#img-9df4eda5-19)">
+    <g id="img-9df4eda5-20">
+      <g pointer-events="visible" stroke-width="0.3" fill="#000000" fill-opacity="0.000" stroke="#000000" stroke-opacity="0.000" class="guide background" id="img-9df4eda5-21">
+        <g transform="translate(68.27,45.52)" id="img-9df4eda5-22">
+          <path d="M-50.64,-40.52 L50.64,-40.52 50.64,40.52 -50.64,40.52  z" class="primitive"/>
+        </g>
+      </g>
+      <g class="guide ygridlines xfixed" stroke-dasharray="0.5,0.5" stroke-width="0.2" stroke="#D0D0E0" id="img-9df4eda5-23">
+        <g transform="translate(68.27,82.37)" id="img-9df4eda5-24">
+          <path fill="none" d="M-50.64,0 L50.64,0 " class="primitive"/>
+        </g>
+        <g transform="translate(68.27,65.62)" id="img-9df4eda5-25">
+          <path fill="none" d="M-50.64,0 L50.64,0 " class="primitive"/>
+        </g>
+        <g transform="translate(68.27,48.87)" id="img-9df4eda5-26">
+          <path fill="none" d="M-50.64,0 L50.64,0 " class="primitive"/>
+        </g>
+        <g transform="translate(68.27,32.12)" id="img-9df4eda5-27">
+          <path fill="none" d="M-50.64,0 L50.64,0 " class="primitive"/>
+        </g>
+        <g transform="translate(68.27,15.37)" id="img-9df4eda5-28">
+          <path fill="none" d="M-50.64,0 L50.64,0 " class="primitive"/>
+        </g>
+      </g>
+      <g class="guide xgridlines yfixed" stroke-dasharray="0.5,0.5" stroke-width="0.2" stroke="#D0D0E0" id="img-9df4eda5-29">
+        <g transform="translate(29.09,45.52)" id="img-9df4eda5-30">
+          <path fill="none" d="M0,-40.52 L0,40.52 " class="primitive"/>
+        </g>
+        <g transform="translate(58.15,45.52)" id="img-9df4eda5-31">
+          <path fill="none" d="M0,-40.52 L0,40.52 " class="primitive"/>
+        </g>
+        <g transform="translate(86.58,45.52)" id="img-9df4eda5-32">
+          <path fill="none" d="M0,-40.52 L0,40.52 " class="primitive"/>
+        </g>
+        <g transform="translate(115.32,45.52)" id="img-9df4eda5-33">
+          <path fill="none" d="M0,-40.52 L0,40.52 " class="primitive"/>
+        </g>
+      </g>
+      <g class="plotpanel" id="img-9df4eda5-34">
+        <metadata>
+          <boundingbox value="17.629999999999995mm 5.0mm 101.28468957064284mm 81.04333333333335mm"/>
+          <unitbox value="2014-08-25T17:02:01.110 46.194133171808076 27705357780 milliseconds -48.388266343616145"/>
+        </metadata>
+        <g stroke-width="0.3" fill="#000000" fill-opacity="0.000" class="geometry" id="img-9df4eda5-35">
+          <g class="color_LCHab{Float32}(70.0f0,60.0f0,240.0f0)" stroke-dasharray="none" stroke-opacity="1" stroke="#00BFFF" id="img-9df4eda5-36">
+            <g transform="translate(68.27,79.61)" id="img-9df4eda5-37">
+              <path fill="none" d="M-48.64,2.76 L-48.32,2.76 -48.01,2.76 -47.69,2.76 -47.37,2.76 -47.06,2.76 -46.74,2.76 -46.43,2.76 -46.11,2.76 -45.79,2.76 -45.48,2.76 -45.16,2.76 -44.85,2.76 -44.53,2.76 -44.21,2.76 -43.9,2.76 -43.58,2.76 -43.27,2.76 -42.95,2.76 -42.64,2.76 -42.32,2.76 -42,2.76 -41.69,2.76 -41.37,2.76 -41.06,2.76 -40.74,2.76 -40.42,2.76 -40.11,2.76 -39.79,2.76 -39.48,2.76 -39.16,2.76 -38.85,2.76 -38.53,2.76 -38.21,2.76 -37.9,2.76 -37.58,2.76 -37.27,2.76 -36.95,2.76 -36.63,2.76 -36.32,2.76 -36,2.76 -35.69,2.76 -35.37,2.76 -35.06,2.76 -34.74,2.76 -34.42,2.76 -34.11,2.76 -33.79,2.76 -33.48,2.76 -33.16,2.76 -32.84,2.76 -32.53,2.76 -32.21,2.76 -31.9,2.76 -31.58,2.76 -31.26,2.76 -30.95,2.76 -30.63,2.76 -30.32,2.76 -30,2.76 -29.69,2.76 -29.37,2.76 -29.05,2.76 -28.75,2.76 -28.44,2.76 -28.12,2.76 -27.8,2.76 -27.49,2.76 -27.17,2.76 -26.86,2.76 -26.54,2.76 -26.22,2.76 -25.91,2.76 -25.59,2.76 -25.28,2.76 -24.96,2.76 -24.64,2.76 -24.33,2.76 -24.01,2.76 -23.7,2.76 -23.38,2.76 -23.07,2.76 -22.75,2.76 -22.43,2.76 -22.12,2.76 -21.8,2.76 -21.49,2.76 -21.17,2.76 -20.85,2.76 -20.54,2.76 -20.22,2.76 -19.91,2.76 -19.59,2.76 -19.28,2.76 -18.96,2.76 -18.64,2.76 -18.33,2.76 -18.01,2.76 -17.7,2.76 -17.38,2.76 -17.06,2.76 -16.75,2.76 -16.43,2.76 -16.12,2.76 -15.8,2.76 -15.48,2.76 -15.17,2.76 -14.85,2.76 -14.54,2.76 -14.22,2.76 -13.91,2.76 -13.59,2.76 -13.27,2.76 -12.96,2.76 -12.64,2.76 -12.33,2.76 -12.01,2.76 -11.69,2.76 -11.38,2.76 -11.06,2.76 -10.75,2.76 -10.43,2.76 -10.12,2.76 -9.8,2.76 -9.48,2.76 -9.17,2.76 -8.85,2.76 -8.54,2.76 -8.22,2.76 -7.9,2.76 -7.59,2.76 -7.27,2.76 -6.96,2.76 -6.64,2.75 -6.32,2.75 -6.01,2.75 -5.69,2.75 -5.38,2.74 -5.06,2.73 -4.75,2.73 -4.43,2.73 -4.11,2.72 -3.8,2.72 -3.48,2.71 -3.17,2.71 -2.85,2.7 -2.53,2.7 -2.22,2.69 -1.9,2.68 -1.59,2.67 -1.27,2.67 -0.96,2.66 -0.64,2.65 -0.32,2.64 -0.01,2.63 0.31,2.62 0.62,2.61 0.94,2.6 1.26,2.58 1.57,2.57 1.89,2.56 2.2,2.54 2.52,2.53 2.83,2.5 3.15,2.48 3.47,2.45 3.78,2.42 4.1,2.39 4.41,2.36 4.73,2.31 5.05,2.25 5.36,2.21 5.68,2.18 5.99,2.15 6.31,2.11 6.63,2.06 6.94,2 7.26,1.95 7.57,1.89 7.89,1.84 8.2,1.79 8.52,1.74 8.84,1.67 9.15,1.61 9.47,1.56 9.78,1.49 10.1,1.4 10.42,1.32 10.73,1.23 11.06,1.14 11.38,1.07 11.69,0.98 12.01,0.92 12.32,0.82 12.64,0.73 12.96,0.66 13.27,0.64 13.59,0.55 13.9,0.44 14.22,0.32 14.53,0.22 14.85,0.14 15.17,0.02 15.48,-0.03 15.8,-0.07 16.11,-0.13 16.43,-0.18 16.75,-0.27 17.06,-0.35 17.38,-0.43 17.69,-0.49 18.01,-0.58 18.33,-0.63 18.64,-0.71 18.96,-0.81 19.27,-0.89 19.59,-1 19.9,-1.12 20.22,-1.2 20.54,-1.3 20.85,-1.41 21.17,-1.53 21.48,-1.62 21.8,-1.71 22.12,-1.83 22.43,-1.89 22.75,-1.98 23.06,-2.12 23.38,-2.28 23.69,-2.43 24.01,-2.57 24.33,-2.72 24.64,-2.87 24.96,-2.96 25.27,-3.09 25.59,-3.19 25.91,-3.32 26.22,-3.46 26.54,-3.62 26.85,-3.77 27.17,-3.83 27.49,-3.96 27.8,-4.11 28.12,-4.22 28.43,-4.33 28.75,-4.44 29.06,-4.55 29.38,-4.62 29.7,-4.71 30.01,-4.84 30.33,-4.96 30.64,-5.06 30.96,-5.16 31.28,-5.22 31.59,-5.27 31.91,-5.31 32.22,-5.38 32.54,-5.48 32.85,-5.53 33.17,-5.6 33.49,-5.71 33.8,-5.8 34.12,-5.89 34.43,-5.98 34.75,-6.04 35.07,-6.09 35.38,-6.15 35.7,-6.2 36.01,-6.28 36.33,-6.36 36.65,-6.45 36.96,-6.54 37.28,-6.63 37.59,-6.72 37.91,-6.76 38.22,-6.81 38.54,-6.85 38.86,-6.93 39.17,-7.02 39.49,-7.09 39.8,-7.16 40.12,-7.23 40.44,-7.3 40.75,-7.36 41.07,-7.43 41.38,-7.48 41.7,-7.53 42.01,-7.58 42.33,-7.62 42.65,-7.66 42.96,-7.69 43.28,-7.71 43.59,-7.73 43.91,-7.75 44.23,-7.77 44.54,-7.77 44.86,-7.78 45.17,-7.78 45.49,-7.78 45.8,-7.78 46.12,-7.78 46.44,-7.78 46.75,-7.78 47.07,-7.78 47.38,-7.78 47.7,-7.78 48.02,-7.78 48.33,-7.78 48.65,-7.78 " class="primitive"/>
+            </g>
+          </g>
+        </g>
+        <g stroke-width="0.3" fill="#000000" fill-opacity="0.000" class="geometry" id="img-9df4eda5-38">
+          <g class="color_LCHab{Float32}(80.0f0,70.000015f0,100.43479f0)" stroke-dasharray="none" stroke-opacity="1" stroke="#D4CA3A" id="img-9df4eda5-39">
+            <g transform="translate(68.27,76.2)" id="img-9df4eda5-40">
+              <path fill="none" d="M-48.64,6.17 L-48.32,6.13 -48.01,6.1 -47.69,6.07 -47.37,6.04 -47.06,6.02 -46.74,5.99 -46.43,5.97 -46.11,5.95 -45.79,5.93 -45.48,5.91 -45.16,5.9 -44.85,5.89 -44.53,5.87 -44.21,5.86 -43.9,5.85 -43.58,5.84 -43.27,5.83 -42.95,5.82 -42.64,5.81 -42.32,5.8 -42,5.79 -41.69,5.79 -41.37,5.78 -41.06,5.77 -40.74,5.77 -40.42,5.76 -40.11,5.76 -39.79,5.76 -39.48,5.75 -39.16,5.75 -38.85,5.75 -38.53,5.75 -38.21,5.74 -37.9,5.74 -37.58,5.74 -37.27,5.74 -36.95,5.73 -36.63,5.73 -36.32,5.73 -36,5.73 -35.69,5.73 -35.37,5.73 -35.06,5.73 -34.74,5.72 -34.42,5.72 -34.11,5.72 -33.79,5.72 -33.48,5.72 -33.16,5.72 -32.84,5.72 -32.53,5.72 -32.21,5.72 -31.9,5.72 -31.58,5.72 -31.26,5.72 -30.95,5.72 -30.63,5.72 -30.32,5.72 -30,5.72 -29.69,5.72 -29.37,5.72 -29.05,5.72 -28.75,5.72 -28.44,5.71 -28.12,5.71 -27.8,5.71 -27.49,5.71 -27.17,5.71 -26.86,5.71 -26.54,5.71 -26.22,5.71 -25.91,5.71 -25.59,5.71 -25.28,5.71 -24.96,5.71 -24.64,5.71 -24.33,5.71 -24.01,5.71 -23.7,5.71 -23.38,5.71 -23.07,5.71 -22.75,5.71 -22.43,5.71 -22.12,5.71 -21.8,5.71 -21.49,5.71 -21.17,5.71 -20.85,5.71 -20.54,5.71 -20.22,5.71 -19.91,5.71 -19.59,5.71 -19.28,5.71 -18.96,5.71 -18.64,5.71 -18.33,5.71 -18.01,5.71 -17.7,5.71 -17.38,5.71 -17.06,5.71 -16.75,5.71 -16.43,5.71 -16.12,5.71 -15.8,5.71 -15.48,5.71 -15.17,5.71 -14.85,5.71 -14.54,5.71 -14.22,5.71 -13.91,5.71 -13.59,5.71 -13.27,5.71 -12.96,5.71 -12.64,5.71 -12.33,5.71 -12.01,5.71 -11.69,5.71 -11.38,5.71 -11.06,5.71 -10.75,5.71 -10.43,5.71 -10.12,5.71 -9.8,5.71 -9.48,5.71 -9.17,5.71 -8.85,5.71 -8.54,5.71 -8.22,5.71 -7.9,5.71 -7.59,5.7 -7.27,5.7 -6.96,5.7 -6.64,5.7 -6.32,5.7 -6.01,5.69 -5.69,5.68 -5.38,5.68 -5.06,5.69 -4.75,5.69 -4.43,5.69 -4.11,5.68 -3.8,5.68 -3.48,5.67 -3.17,5.68 -2.85,5.69 -2.53,5.68 -2.22,5.67 -1.9,5.67 -1.59,5.67 -1.27,5.66 -0.96,5.65 -0.64,5.63 -0.32,5.63 -0.01,5.65 0.31,5.64 0.62,5.64 0.94,5.63 1.26,5.64 1.57,5.63 1.89,5.63 2.2,5.62 2.52,5.61 2.83,5.58 3.15,5.58 3.47,5.58 3.78,5.56 4.1,5.53 4.41,5.48 4.73,5.47 5.05,5.46 5.36,5.46 5.68,5.46 5.99,5.45 6.31,5.38 6.63,5.33 6.94,5.31 7.26,5.28 7.57,5.32 7.89,5.32 8.2,5.29 8.52,5.22 8.84,5.21 9.15,5.18 9.47,5.09 9.78,5.08 10.1,5.1 10.42,5.09 10.73,5.08 11.06,5.06 11.38,4.99 11.69,5.01 12.01,5.03 12.32,4.96 12.64,4.96 12.96,4.93 13.27,4.92 13.59,4.79 13.9,4.79 14.22,4.74 14.53,4.77 14.85,4.73 15.17,4.6 15.48,4.5 15.8,4.35 16.11,4.2 16.43,4.23 16.75,3.98 17.06,3.78 17.38,3.58 17.69,3.48 18.01,3.23 18.33,2.97 18.64,2.71 18.96,2.55 19.27,2.27 19.59,2.01 19.9,1.82 20.22,1.62 20.54,1.45 20.85,1.18 21.17,0.91 21.48,0.69 21.8,0.26 22.12,0.11 22.43,-0.07 22.75,-0.4 23.06,-0.68 23.38,-0.93 23.69,-1.2 24.01,-1.54 24.33,-1.88 24.64,-2.2 24.96,-2.4 25.27,-2.89 25.59,-3.13 25.91,-3.52 26.22,-3.88 26.54,-3.98 26.85,-4.31 27.17,-4.43 27.49,-4.84 27.8,-5.2 28.12,-5.71 28.43,-6.35 28.75,-6.89 29.06,-7.49 29.38,-7.81 29.7,-8.33 30.01,-8.88 30.33,-9.4 30.64,-9.91 30.96,-10.39 31.28,-10.61 31.59,-10.89 31.91,-11.08 32.22,-11.52 32.54,-11.96 32.85,-12.15 33.17,-12.57 33.49,-13.11 33.8,-13.57 34.12,-14 34.43,-14.45 34.75,-14.72 35.07,-14.95 35.38,-15.29 35.7,-15.48 36.01,-15.91 36.33,-16.34 36.65,-16.79 36.96,-17.23 37.28,-17.73 37.59,-18.1 37.91,-18.26 38.22,-18.56 38.54,-18.76 38.86,-19.22 39.17,-19.64 39.49,-20.02 39.8,-20.37 40.12,-20.7 40.44,-21 40.75,-21.31 41.07,-21.62 41.38,-21.87 41.7,-22.13 42.01,-22.35 42.33,-22.54 42.65,-22.7 42.96,-22.86 43.28,-22.95 43.59,-23.04 43.91,-23.12 44.23,-23.18 44.54,-23.22 44.86,-23.23 45.17,-23.23 45.49,-23.23 45.8,-23.23 46.12,-23.23 46.44,-23.23 46.75,-23.23 47.07,-23.23 47.38,-23.23 47.7,-23.23 48.02,-23.23 48.33,-23.23 48.65,-23.23 " class="primitive"/>
+            </g>
+          </g>
+        </g>
+        <g stroke-width="0.3" fill="#000000" fill-opacity="0.000" class="geometry" id="img-9df4eda5-41">
+          <g class="color_LCHab{Float32}(65.89944f0,62.21457f0,353.99814f0)" stroke-dasharray="none" stroke-opacity="1" stroke="#FF6DAE" id="img-9df4eda5-42">
+            <g transform="translate(68.27,65.34)" id="img-9df4eda5-43">
+              <path fill="none" d="M-48.64,16.57 L-48.32,16.57 -48.01,16.57 -47.69,16.57 -47.37,16.57 -47.06,16.57 -46.74,16.57 -46.43,16.57 -46.11,16.57 -45.79,16.57 -45.48,16.57 -45.16,16.57 -44.85,16.57 -44.53,16.57 -44.21,16.57 -43.9,16.57 -43.58,16.57 -43.27,16.57 -42.95,16.57 -42.64,16.57 -42.32,16.57 -42,16.57 -41.69,16.57 -41.37,16.57 -41.06,16.57 -40.74,16.57 -40.42,16.57 -40.11,16.57 -39.79,16.57 -39.48,16.57 -39.16,16.57 -38.85,16.57 -38.53,16.57 -38.21,16.57 -37.9,16.57 -37.58,16.57 -37.27,16.57 -36.95,16.57 -36.63,16.57 -36.32,16.57 -36,16.57 -35.69,16.57 -35.37,16.57 -35.06,16.57 -34.74,16.57 -34.42,16.57 -34.11,16.57 -33.79,16.57 -33.48,16.57 -33.16,16.57 -32.84,16.57 -32.53,16.57 -32.21,16.57 -31.9,16.57 -31.58,16.57 -31.26,16.57 -30.95,16.57 -30.63,16.57 -30.32,16.57 -30,16.57 -29.69,16.57 -29.37,16.57 -29.05,16.57 -28.75,16.57 -28.44,16.57 -28.12,16.57 -27.8,16.57 -27.49,16.57 -27.17,16.57 -26.86,16.57 -26.54,16.57 -26.22,16.57 -25.91,16.57 -25.59,16.57 -25.28,16.57 -24.96,16.57 -24.64,16.57 -24.33,16.57 -24.01,16.57 -23.7,16.57 -23.38,16.57 -23.07,16.57 -22.75,16.57 -22.43,16.57 -22.12,16.57 -21.8,16.57 -21.49,16.57 -21.17,16.57 -20.85,16.57 -20.54,16.57 -20.22,16.57 -19.91,16.57 -19.59,16.57 -19.28,16.57 -18.96,16.57 -18.64,16.57 -18.33,16.57 -18.01,16.57 -17.7,16.57 -17.38,16.57 -17.06,16.57 -16.75,16.57 -16.43,16.57 -16.12,16.57 -15.8,16.57 -15.48,16.57 -15.17,16.57 -14.85,16.57 -14.54,16.57 -14.22,16.57 -13.91,16.57 -13.59,16.57 -13.27,16.57 -12.96,16.57 -12.64,16.57 -12.33,16.57 -12.01,16.57 -11.69,16.57 -11.38,16.57 -11.06,16.57 -10.75,16.57 -10.43,16.57 -10.12,16.57 -9.8,16.57 -9.48,16.57 -9.17,16.57 -8.85,16.57 -8.54,16.57 -8.22,16.57 -7.9,16.56 -7.59,16.56 -7.27,16.55 -6.96,16.55 -6.64,16.54 -6.32,16.52 -6.01,16.51 -5.69,16.49 -5.38,16.48 -5.06,16.47 -4.75,16.46 -4.43,16.45 -4.11,16.43 -3.8,16.41 -3.48,16.39 -3.17,16.37 -2.85,16.37 -2.53,16.35 -2.22,16.31 -1.9,16.28 -1.59,16.26 -1.27,16.23 -0.96,16.19 -0.64,16.16 -0.32,16.13 -0.01,16.11 0.31,16.07 0.62,16.04 0.94,16 1.26,15.96 1.57,15.93 1.89,15.89 2.2,15.82 2.52,15.76 2.83,15.67 3.15,15.6 3.47,15.51 3.78,15.4 4.1,15.28 4.41,15.12 4.73,14.97 5.05,14.8 5.36,14.67 5.68,14.58 5.99,14.46 6.31,14.28 6.63,14.1 6.94,13.9 7.26,13.7 7.57,13.58 7.89,13.41 8.2,13.25 8.52,13 8.84,12.8 9.15,12.58 9.47,12.34 9.78,12.11 10.1,11.88 10.42,11.63 10.73,11.35 11.06,11.07 11.38,10.77 11.69,10.51 12.01,10.36 12.32,10 12.64,9.72 12.96,9.49 13.27,9.41 13.59,9 13.9,8.68 14.22,8.26 14.53,8 14.85,7.71 15.17,7.24 15.48,6.93 15.8,6.58 16.11,6.16 16.43,5.97 16.75,5.37 17.06,4.8 17.38,4.26 17.69,3.89 18.01,3.26 18.33,2.79 18.64,2.19 18.96,1.57 19.27,0.96 19.59,0.23 19.9,-0.48 20.22,-1.06 20.54,-1.62 20.85,-2.39 21.17,-3.2 21.48,-3.79 21.8,-4.61 22.12,-5.3 22.43,-5.74 22.75,-6.44 23.06,-7.34 23.38,-8.27 23.69,-9.16 24.01,-10.12 24.33,-11.12 24.64,-12.11 24.96,-12.68 25.27,-13.72 25.59,-14.41 25.91,-15.36 26.22,-16.33 26.54,-17.11 26.85,-18.12 27.17,-18.46 27.49,-19.45 27.8,-20.49 28.12,-21.51 28.43,-22.69 28.75,-23.83 29.06,-24.98 29.38,-25.63 29.7,-26.63 30.01,-27.79 30.33,-28.91 30.64,-29.95 30.96,-30.94 31.28,-31.42 31.59,-31.97 31.91,-32.33 32.22,-33.13 32.54,-34.07 32.85,-34.53 33.17,-35.29 33.49,-36.36 33.8,-37.29 34.12,-38.15 34.43,-39.08 34.75,-39.63 35.07,-40.12 35.38,-40.76 35.7,-41.2 36.01,-42.01 36.33,-42.85 36.65,-43.75 36.96,-44.63 37.28,-45.62 37.59,-46.4 37.91,-46.78 38.22,-47.32 38.54,-47.76 38.86,-48.62 39.17,-49.46 39.49,-50.22 39.8,-50.9 40.12,-51.58 40.44,-52.21 40.75,-52.85 41.07,-53.48 41.38,-53.98 41.7,-54.52 42.01,-54.98 42.33,-55.36 42.65,-55.72 42.96,-56.04 43.28,-56.25 43.59,-56.42 43.91,-56.6 44.23,-56.73 44.54,-56.81 44.86,-56.86 45.17,-56.86 45.49,-56.86 45.8,-56.86 46.12,-56.86 46.44,-56.86 46.75,-56.86 47.07,-56.86 47.38,-56.86 47.7,-56.86 48.02,-56.86 48.33,-56.86 48.65,-56.86 " class="primitive"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g class="guide ylabels" font-size="2.82" font-family="'PT Sans Caption','Helvetica Neue','Helvetica',sans-serif" fill="#6C606B" id="img-9df4eda5-44">
+    <g transform="translate(16.63,82.37)" id="img-9df4eda5-45">
+      <g class="primitive">
+        <text text-anchor="end" dy="0.35em">0</text>
+      </g>
+    </g>
+    <g transform="translate(16.63,65.62)" id="img-9df4eda5-46">
+      <g class="primitive">
+        <text text-anchor="end" dy="0.35em">10</text>
+      </g>
+    </g>
+    <g transform="translate(16.63,48.87)" id="img-9df4eda5-47">
+      <g class="primitive">
+        <text text-anchor="end" dy="0.35em">20</text>
+      </g>
+    </g>
+    <g transform="translate(16.63,32.12)" id="img-9df4eda5-48">
+      <g class="primitive">
+        <text text-anchor="end" dy="0.35em">30</text>
+      </g>
+    </g>
+    <g transform="translate(16.63,15.37)" id="img-9df4eda5-49">
+      <g class="primitive">
+        <text text-anchor="end" dy="0.35em">40</text>
+      </g>
+    </g>
+  </g>
+  <g font-size="3.53" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" fill="#564A55" stroke="#000000" stroke-opacity="0.000" id="img-9df4eda5-50">
+    <g transform="translate(8.64,43.52)" id="img-9df4eda5-51">
+      <g class="primitive">
+        <text text-anchor="middle" dy="0.35em" transform="rotate(-90,0, 2)"> (g)</text>
+      </g>
+    </g>
+  </g>
+</g>
+<defs>
+  <clipPath id="img-9df4eda5-19">
+    <path d="M17.63,5 L118.91,5 118.91,86.04 17.63,86.04 " />
+  </clipPath>
+</defs>
+</svg>
+<p>For more information about using the framework such as <code>simulate()</code> and <code>visualize()</code> functions, please refer to the <a href="http://cropbox.github.io/Cropbox.jl/stable/">Cropbox documentation</a>.</p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Sunday 20 August 2023 01:25">Sunday 20 August 2023</span>. Using Julia version 1.9.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
