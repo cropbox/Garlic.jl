@@ -10,4 +10,6 @@ include("physiology/physiology.jl")
 
 include("examples/examples.jl")
 
+include("precompile.jl")
+
 end
