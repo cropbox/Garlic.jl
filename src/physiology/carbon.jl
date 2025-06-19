@@ -41,7 +41,7 @@ end
 
     carbon_pool(assimilation, carbon_translocation, carbon_supply) => begin
         assimilation + carbon_translocation - carbon_supply
-    end ~ accumulate(u"g")
+    end ~ accumulate(u"g", min = 0u"g")
 
     nonstructural_carbon(carbon_pool, carbon_reserve) => begin
         carbon_pool + carbon_reserve
