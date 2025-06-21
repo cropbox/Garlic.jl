@@ -33,7 +33,7 @@ end
     #TODO: handle translocation back from carbon pool (i.e. at midnight)
     carbon_reserve(carbon_reserve_from_seed, carbon_translocation) => begin
         carbon_reserve_from_seed - carbon_translocation
-    end ~ accumulate(u"g")
+    end ~ accumulate(u"g", min = 0u"g")
 
     carbon_translocation(carbon_reserve, carbon_translocation_rate) => begin
         carbon_reserve * carbon_translocation_rate
@@ -44,7 +44,9 @@ end
     end ~ accumulate(u"g", min = 0u"g")
 
     nonstructural_carbon(carbon_pool, carbon_reserve) => begin
-        carbon_pool + carbon_reserve
+        #HACK: prevent duplicate use of the carbon pool
+        #carbon_pool + carbon_reserve
+        carbon_reserve
     end ~ track(u"g")
 
     nonstructural_carbon_mass(nonstructural_carbon, C_conc, CH2O_to_C_ratio) => begin
@@ -83,6 +85,11 @@ end
         # this is where source/sink (supply/demand) valve can come in to play
         # 0.2 is value for hourly interval, Grant (1989)
         1 / 5u"hr"
+    end ~ preserve(u"hr^-1", max = maximum_carbon_growth_factor)
+
+    maximum_carbon_growth_factor(step = context.clock.step) => begin
+        #HACK: prevent over-supply of the carbon when large time steps are used
+        1 / step
     end ~ preserve(u"hr^-1")
 
     carbon_translocating(carbon_pool) => begin
@@ -124,7 +131,7 @@ end
 
     carbon_available(carbon_supply, maintenance_respiration) => begin
         carbon_supply - maintenance_respiration
-    end ~ track(u"g/d")
+    end ~ track(u"g/d", min = 0u"g/d")
 
     Yg: synthesis_efficiency => begin
         #1 / 1.43 # equivalent Yg, Goudriaan and van Laar (1994)
