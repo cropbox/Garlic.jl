@@ -4,7 +4,7 @@ using Cropbox
 using ..Garlic
 using TimeZones
 using Dates
-using Interpolations: LinearInterpolation
+using Interpolations: linear_interpolation
 using BSON
 
 tz = tz"Asia/Seoul"
@@ -203,7 +203,7 @@ rcp_co2(scenario, year) = begin
     elseif scenario == :RCP85
         [368.9, 378.8, 389.3, 415.8, 448.8, 489.4, 540.5, 603.5, 677.1, 758.2, 844.8, 935.9]
     end
-    LinearInterpolation(x, Float64.(y))(year)
+    linear_interpolation(x, Float64.(y))(year)
 end
 
 rcp_config(; config=(), tz=tz, kw...) = _rcp_config(; config, meta=kw, tz, kw...)
