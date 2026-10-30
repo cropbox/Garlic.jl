@@ -44,7 +44,8 @@ using CSV
 using DataFrames: DataFrames, DataFrame
 
 loadwea(filename, timezone; indexkey=:index) = begin
-    df = CSV.File(filename) |> DataFrame
+    df = CSV.File(filename; types=Dict(:time => String)) |> DataFrame
+    df.time = Time.(df.time)
     df[!, indexkey] = map(r -> begin
         occurrence = 1
         i = DataFrames.row(r)
