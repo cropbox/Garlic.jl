@@ -19,7 +19,10 @@ end
         stop="calendar.count",
         snap=s -> Dates.hour(s.calendar.time') == 12,
     )
-    @test r.leaves_initiated[end] > 0
+    @test r.leaves_initiated[end] == 10
+    @test r.bulb_mass[end] ≈ 17.575627u"g" rtol=1e-6
+    @test r.total_mass[end] ≈ 44.197598u"g" rtol=1e-6
+    @test all(isfinite, r.total_mass)
     visualize(r, :DAP, [:leaves_appeared, :leaves_mature, :leaves_dropped], kind=:step) |> println # Fig. 3.D
     visualize(r, :DAP, :green_leaf_area) |> println # Fig. 4.D
     visualize(r, :DAP, [:leaf_mass, :bulb_mass, :total_mass]) |> println

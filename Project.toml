@@ -1,7 +1,7 @@
 name = "Garlic"
 uuid = "154c3855-1f1e-46e8-b837-ca60023b1bfc"
 authors = ["Kyungdahm Yun <tomyun@gmail.com>"]
-version = "0.1.31-DEV"
+version = "0.1.32-DEV"
 
 [deps]
 BSON = "fbb218c0-5317-5bc6-957e-2ee96dd4b1f0"
@@ -16,11 +16,11 @@ TimeZones = "f269a46b-ccf7-5d73-abea-4c690281aa53"
 
 [compat]
 BSON = "0.3"
-CSV = "0.8, 0.9, 0.10, 1.1"
+CSV = "0.10.16, 1.1"
 Cropbox = "0.3"
 DataFrames = "1"
-DataFramesMeta = "0.8, 0.9, 0.10, 0.11, 0.12, 0.14, 0.15"
-Interpolations = "0.14, 0.15, 0.16"
+DataFramesMeta = "0.15"
+Interpolations = "0.15, 0.16"
 PrecompileTools = "1"
 TimeZones = "1"
-julia = "1.6"
+julia = "1.13"
