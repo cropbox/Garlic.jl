@@ -16,11 +16,11 @@ TimeZones = "f269a46b-ccf7-5d73-abea-4c690281aa53"
 
 [compat]
 BSON = "0.3"
-CSV = "0.10.16, 1.1"
+CSV = "1.1"
 Cropbox = "0.3"
 DataFrames = "1"
 DataFramesMeta = "0.15"
-Interpolations = "0.15, 0.16"
+Interpolations = "0.16"
 PrecompileTools = "1"
 TimeZones = "1"
 julia = "1.13"
