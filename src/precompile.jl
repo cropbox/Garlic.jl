@@ -7,5 +7,5 @@ PrecompileTools.@compile_workload begin
         verbose=false,
     )
     visualize(r, :DAP, :leaf_area; backend=:UnicodePlots)
-    visualize(r, :DAP, :leaf_area; backend=:Gadfly)
+    visualize(r, :DAP, :leaf_area; backend = isdefined(Cropbox, :Makie) ? :Makie : :Gadfly)
 end
